@@ -1,4 +1,3 @@
-
 Side_1 = input("please enter first side: ")
 Side_2 = input("please enter second side: ")
 Side_3 = input("please enter third side: ")
