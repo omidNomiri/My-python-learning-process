@@ -11,4 +11,3 @@ def chess_page_output(row: int,column: int):
         print()
 
 chess_page_output(int(input("Please ener your row: ")),int(input("Please ener your column: ")))
-
