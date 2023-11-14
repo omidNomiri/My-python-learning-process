@@ -1,6 +1,6 @@
 def multiplication_table(row: int,column: int):
-    for i in range(row):
-        for j in range(column):
+    for i in range(row+1):
+        for j in range(column+1):
 
             if i == 0 or j == 0:
                 continue
