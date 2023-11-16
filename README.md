@@ -28,6 +28,6 @@ I believe in learning by doing. Therefore, most of my time is spent coding and w
 
 ## Contact Me
 
-Feel free to reach out to me if you have any questions or suggestions. You can contact me at my [email] (omidnomiri@gmail.com). You can also contribute to this repository by submitting a pull request.
+Feel free to reach out to me if you have any questions or suggestions. You can contact me at my [email](omidnomiri@gmail.com). You can also contribute to this repository by submitting a pull request.
 
 Happy coding!
