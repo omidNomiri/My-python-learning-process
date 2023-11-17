@@ -1,0 +1,3 @@
+{'code': '1001', 'name': 'potato', 'price': '4500', 'storage': '13'}
+{'code': '1002', 'name': 'meat', 'price': '50000', 'storage': '12'}
+{'code': 1003, 'name': 'DVD', 'price': 10000, 'storage': 12}
