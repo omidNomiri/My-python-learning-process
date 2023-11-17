@@ -1,4 +1,7 @@
+import qrcode
+
 PRODUCTS = []
+factor = []
 
 def read_database():
     with open("Assignment_7\database.txt","r") as database:
@@ -18,7 +21,9 @@ def show_menu():
     print("4.Search")
     print("5.Show list")
     print("6.Buy")
-    print("7.Exit")
+    print("7.print factor")
+    print("8.QRcode product")
+    print("9.Exit")
 
 def add():
     code = int(input("Please enter your commodity id: "))
@@ -27,38 +32,73 @@ def add():
     storage = int(input("Please enter your commodity storage: "))
     new_product = {"code":code,"name":name,"price":price,"storage":storage}
     PRODUCTS.append(new_product)
+    print("product add operation success.")
 
 def edit():
     choice = int(input("you want change witch one?(1.name_2.price_3.storage): "))
     if choice == 1:
         for row in PRODUCTS:
-            print(row["code"],"\t",row["name"],"\t",row["price"])
+            print(row["name"],"\t",row["price"],"\t",row["storage"])
         select = input("select your product name: ")
         for row in PRODUCTS:
             if row["name"] == select:
                 new_product = input("New name: ")
                 row["name"] = new_product
+        print("product edit operation success.")
+    if choice == 2:
+        for row in PRODUCTS:
+            print(row["name"],"\t",row["price"],"\t",row["storage"])
+        select = input("select your product name: ")
+        for row in PRODUCTS:
+            if row["name"] == select:
+                new_product = input("New price: ")
+                row["price"] = new_product
+        print("product edit operation success.")
+    if choice == 3:
+        for row in PRODUCTS:
+            print(row["name"],"\t",row["price"],"\t",row["storage"])
+        select = input("select your product name: ")
+        for row in PRODUCTS:
+            if row["name"] == select:
+                new_product = input("New storage: ")
+                row["storage"] = new_product
+        print("product edit operation success.")
 
 def remove():
     code = int(input("Please enter your product id: "))
-    PRODUCTS = [row for row in PRODUCTS if row['code'] != code]
+    new_products = [row for row in PRODUCTS if row['code'] != code]
+    PRODUCTS = new_products
     print("Remove successful.")
 
 def search():
     user_search = input("Please enter your product id or name: ")
     for product in PRODUCTS:
-        if product["code"]==user_search or product["name"]:
+        if product["code"]==user_search or product["name"]==user_search:
             print(product["code"],"\t",product["name"],"\t",product["price"])
             break
     else:
-        print("not find.")
+        print("We dont have any product with this code or name.")
 
 def show_list():
     for row in PRODUCTS:
         print(row["code"],"\t",row["name"],"\t",row["price"])
 
 def buy():
-    ...
+    while True:
+        for row in PRODUCTS:
+            print(row["code"],"\t",row["name"],"\t",row["price"],"\t",row["storage"])
+            select = input("Please enter your product code: ")
+            if select == row["code"]:
+                user_count_buy = int(input("Please enter how much you want: "))
+            if user_count_buy <= row["storage"]:
+                row["storage"] = row["storage"] - user_count_buy
+                user_Basket = [row["name"],user_count_buy,row["price"]]
+                factor.append(user_Basket)
+                print("product buy operation success.")
+            else:
+                print("We dont have a enough product for you!")
+        else:
+            print("We dont have any product with this code.")
 
 def save_in_database():
     with open("Assignment_7\database.txt","a") as database:
@@ -69,6 +109,25 @@ def save_in_database():
             storage = row["storage"]
             data = str(f"{code},{name},{price},{storage}")
             database.write(data)
+
+def print_factor():
+    for row in factor:
+        print(row)
+
+def make_QRcode():
+    product_QRcode = int(input("Please enter your product code: "))
+    for row in PRODUCTS:
+        if product_QRcode == row["code"]:
+            code = row["code"]
+            name = row["name"]
+            price = row["price"]
+            storage = row["storage"]
+            product_info = str(f"{code},{name},{price},{storage}")
+            qr_code = qrcode.make(product_info)
+            qr_code.save("product-QRcode.png")
+            print("product QRcode now available.")
+    else:
+        print("We dont have any product with this code.")
 
 while True:
     show_menu()
@@ -86,7 +145,11 @@ while True:
     elif user_operation == 6:
         buy()
     elif user_operation == 7:
+        print_factor()
+    elif user_operation == 8:
+        make_QRcode()
+    elif user_operation == 9:
         save_in_database()
         exit(0)
     else:
-        print("enter number between 1 to 7.")
+        print("enter number between 1 to 9.")
