@@ -21,9 +21,8 @@ def show_menu():
     print("4.Search")
     print("5.Show list")
     print("6.Buy")
-    print("7.print factor")
-    print("8.QRcode product")
-    print("9.Exit")
+    print("7.QRcode product")
+    print("8.Exit")
 
 def add():
     code = int(input("Please enter your commodity id: "))
@@ -65,6 +64,7 @@ def edit():
         print("product edit operation success.")
 
 def remove():
+    global PRODUCTS
     code = int(input("Please enter your product id: "))
     new_products = [row for row in PRODUCTS if row['code'] != code]
     PRODUCTS = new_products
@@ -87,18 +87,24 @@ def buy():
     while True:
         for row in PRODUCTS:
             print(row["code"],"\t",row["name"],"\t",row["price"],"\t",row["storage"])
-            select = input("Please enter your product code: ")
+        select = input("Please enter your product code: ")
+        for row in PRODUCTS:
             if select == row["code"]:
                 user_count_buy = int(input("Please enter how much you want: "))
-            if user_count_buy <= row["storage"]:
-                row["storage"] = row["storage"] - user_count_buy
-                user_Basket = [row["name"],user_count_buy,row["price"]]
-                factor.append(user_Basket)
-                print("product buy operation success.")
-            else:
-                print("We dont have a enough product for you!")
+                if user_count_buy <= int(row["storage"]):
+                    row["storage"] = int(row["storage"]) - user_count_buy
+                    user_Basket = [row["name"],user_count_buy,row["price"]]
+                    factor.append(user_Basket)
+                    print("product buy operation success.")
+                    break
+                else:
+                    print("We dont have a enough product for you!")
         else:
             print("We dont have any product with this code.")
+        continue_shopping = input("Do you want to continue shopping? (y/n): ")
+        if continue_shopping.lower() != "y":
+            print_factor()
+            break
 
 def save_in_database():
     with open("Assignment_7\database.txt","a") as database:
@@ -115,14 +121,14 @@ def print_factor():
         print(row)
 
 def make_QRcode():
-    product_QRcode = int(input("Please enter your product code: "))
+    product_code = int(input("Please enter your product code: "))
     for row in PRODUCTS:
-        if product_QRcode == row["code"]:
+        if product_code == int(row["code"]):
             code = row["code"]
             name = row["name"]
             price = row["price"]
             storage = row["storage"]
-            product_info = str(f"{code},{name},{price},{storage}")
+            product_info = f"{code},{name},{price},{storage}"
             qr_code = qrcode.make(product_info)
             qr_code.save("product-QRcode.png")
             print("product QRcode now available.")
@@ -145,11 +151,9 @@ while True:
     elif user_operation == 6:
         buy()
     elif user_operation == 7:
-        print_factor()
-    elif user_operation == 8:
         make_QRcode()
-    elif user_operation == 9:
+    elif user_operation == 8:
         save_in_database()
         exit(0)
     else:
-        print("enter number between 1 to 9.")
+        print("enter number between 1 to 8.")
