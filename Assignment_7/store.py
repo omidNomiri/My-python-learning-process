@@ -29,7 +29,15 @@ def add():
     PRODUCTS.append(new_product)
 
 def edit():
-    ...
+    choice = int(input("you want change witch one?(1.name_2.price_3.storage): "))
+    if choice == 1:
+        for row in PRODUCTS:
+            print(row["code"],"\t",row["name"],"\t",row["price"])
+        select = input("select your product name: ")
+        for row in PRODUCTS:
+            if row["name"] == select:
+                new_product = input("New name: ")
+                row["name"] = new_product
 
 def remove():
     code = int(input("Please enter your product id: "))
