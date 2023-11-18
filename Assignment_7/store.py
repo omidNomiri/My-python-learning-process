@@ -4,11 +4,14 @@ PRODUCTS = []
 factor = []
 
 def read_database():
-    with open("Assignment_7\database.txt","r") as database:
+    with open("Assignment_7\database.txt", "r") as database:
         for line in database:
+            line = line.strip()
             product_list = line.split(",")
-            my_dictionary = {"code" : product_list[0],"name" : product_list[1],"price" : product_list[2],"storage" : product_list[3]}
-            PRODUCTS.append(my_dictionary)
+            
+            if len(product_list) == 4:
+                my_dictionary = {"code": product_list[0], "name": product_list[1], "price": product_list[2], "storage": product_list[3]}
+                PRODUCTS.append(my_dictionary)
 
 print("Loading.....")
 read_database()
@@ -107,13 +110,13 @@ def buy():
             break
 
 def save_in_database():
-    with open("Assignment_7\database.txt","a") as database:
+    with open("Assignment_7\database.txt","w") as database:
         for row in PRODUCTS:
             code = row["code"]
             name = row["name"]
             price = row["price"]
             storage = row["storage"]
-            data = str(f"{code},{name},{price},{storage}")
+            data = str(f"{code},{name},{price},{storage}\n")
             database.write(data)
 
 def print_factor():
