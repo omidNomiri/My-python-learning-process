@@ -9,4 +9,4 @@ for file_name in file_list:
     image = imageio.v2.imread(file_path)
     IMAGES.append(image)
 
-imageio.mimsave("Assignment_8/drawing.gif", IMAGES)
+imageio.mimsave("Assignment_8/earth.gif", IMAGES)

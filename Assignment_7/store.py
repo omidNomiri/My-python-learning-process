@@ -28,10 +28,10 @@ def show_menu():
     print("8.Exit")
 
 def add():
-    code = int(input("Please enter your commodity id: "))
-    name = str(input("Please enter your commodity name: "))
-    price = int(input("Please enter your commodity price: "))
-    storage = int(input("Please enter your commodity storage: "))
+    code = int(input("Please enter your product id: "))
+    name = str(input("Please enter your product name: "))
+    price = int(input("Please enter your product price: "))
+    storage = int(input("Please enter your product storage: "))
     new_product = {"code":code,"name":name,"price":price,"storage":storage}
     PRODUCTS.append(new_product)
     print("product add operation success.")
