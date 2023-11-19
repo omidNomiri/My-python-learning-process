@@ -1,8 +1,11 @@
-import telebot
 import random
+from datetime import date, datetime
+import datetime
+import persiantools
 import qrcode
-from persiantools.jdatetime import JalaliDate
 import gtts
+import telebot
+from telebot import types
 
 bot = telebot.TeleBot("6836755262:AAET97-d45Q0Ax93tcphANQ-LWrTaQg_bRk", parse_mode=None)
 
@@ -21,16 +24,17 @@ def send_welcome(message):
     user_name = message.from_user.first_name
     bot.reply_to(message, f" خوش آمدید {user_name}", reply_markup=markup)
 
+
 @bot.message_handler(commands=["QRcode"])
-def crating_QRcode(message):
-    text = bot.send_message(message.chat.id, "جمله مورد نظر خود را وارد کنید")
-    bot.register_next_step_handler(text, crating_QRcode)
+def get_text_for_qr(message):
+    msg = bot.send_message(message.chat.id, "جمله مورد نظر خود را وارد کنید")
+    bot.register_next_step_handler(msg, user_text_qr)
 
 @bot.message_handler(commands=["game"])
 def game(message):
     global number
-    number = random.randint(1, 100)
-    user_number_input = bot.send_message(message.chat.id, "بازی شروع شد. یک عدد بین 1 تا 100 انتخاب کن!")
+    number = random.randint(1, 5)
+    user_number_input = bot.send_message(message.chat.id, "بازی شروع شد. یک عدد بین 1 تا 5 انتخاب کن!")
     bot.register_next_step_handler(user_number_input, user_number)
 
 @bot.message_handler(commands=["age"])
@@ -53,6 +57,8 @@ def number_list(message):
     user_numbers = bot.send_message(message.chat.id, "اعداد لیست را با استفاده از ',' از هم جدا کنید")
     bot.register_next_step_handler(user_numbers, index_max_list)
 
+
+@bot.message_handler(commands=['help'])
 def help_user(message):
     bot.reply_to(message, "این گزینه هایی است که میتونی از بات استفاده کنی")
     bot.send_message(message.chat.id, "QRcode: اگر بهش یه جمله بدی برات تبدیل به QRcode میکنه"
@@ -64,14 +70,16 @@ def help_user(message):
                                     "\n help: این هم که الان زدی ولی خب این بهت لیست کامند هارو نشون میده")
 
 @bot.message_handler(func=lambda m: True)
-def user_text(message):
-    QR_text = message.text
-    img = qrcode.make(QR_text)
-    img.save("Qrcode.png")
-    bot.send_photo(message.chat.id, img, reply_markup=markup)
 
-@bot.message_handler(func=lambda m: True)
+def user_text_qr(message):
+	QR_text = message.text
+	img = qrcode.make(QR_text)
+	img.save("Qrcode.png")
+	QRc = open("Qrcode.png",'rb')
+	bot.send_photo(message.chat.id, QRc, reply_markup=markup)
+
 def user_number(message):
+  for i in range(11):
     chat_id = message.chat.id
     if number > int(message.text):
         bot.send_message(chat_id, "عددی که انتخاب کردی کوچکتر از عدد درسته. پس برو بالا تر!")
@@ -80,46 +88,49 @@ def user_number(message):
     elif number == int(message.text):
         bot.send_message(chat_id, "برنده شدی!")
 
-@bot.message_handler(func=lambda m:True)
-def user_age(message):
-    user_birthday = str(message.chat.id)
-    try:
-        birth_year, birth_month, birth_day = map(int, user_birthday.split("-"))
-        dob_date = JalaliDate(birth_year, birth_month, birth_day)
-        today_date = JalaliDate.today()
-
-        age_timedelta = today_date - dob_date
-        age_days = age_timedelta.days
-        age_years = age_days // 365
-        remaining_days = age_days % 365
-        age_months = remaining_days // 30
-        remaining_days %= 30
-
-        age_info = age_years, age_months, remaining_days
-        bot.reply_to(message, age_info)
-    except ValueError:
-        bot.reply_to(message, "تاریخ وارد شده معتبر نیست.")
+def user_age(message, markup):
+    user_birthday = str(message.text)
+    birthday_year, birthday_month, birthday_day = map(int, user_birthday.split("-"))
     
-@bot.message_handler(func=lambda m:True)
-def english_to_speak(message):
-    user_text = str(message.chat.id)
-    sound = gtts.gTTS(user_text,lang="en",slow=False)
-    sound.save("Assignment_9/voice.mp3")
-    with open("Assignment_9/voice.mp3", "r") as voice_reader:
-        bot.send_audio(message.chat.id , voice_reader, reply_markup=markup) 
+    miladi_date = persiantools.JalaliDatetime(birthday_year, birthday_month, birthday_day).todate()
+    dob_date = datetime.date.fromisoformat(str(miladi_date))
+    
+    age_timedelta = datetime.date.today() - dob_date
+    age_days = age_timedelta.days
+    
+    age_years = age_days // 365
+    remaining_days = age_days % 365
+    age_months = remaining_days // 30
+    remaining_days %= 30
+    
+    age = age_years, age_months, remaining_days
+    bot.reply_to(message, age, reply_markup=markup)
 
-@bot.message_handler(func=lambda m:True)
+def text_to_voice(message):
+    user_text = message.text
+    voice = gtts.gTTS(user_text, lang="en", slow=False)
+    voice.save("Assignment_9\Voice.mp3")
+    voice_reader = open("Assignment_9\Voice.mp3", 'rb')
+    bot.send_audio(message.chat.id , voice_reader, reply_markup=markup)        
+
 def max_list(message):
-    user_number = str(message.chat.id)
-    list_number = [int(num) for num in user_number.split(",")]
-    sort_list = sorted(list_number)
-    bot.reply_to(message, sort_list[-1])
-
-@bot.message_handler(func=lambda m:True)
+    user_namber2 = str(message.text)
+    nambers = user_namber2.split(" ")    
+    list_namber=[]
+    for namber in nambers :
+        list_namber.append(namber)
+    l=max(list_namber)
+    bot.reply_to(message,l , reply_markup=markup)
+    
 def index_max_list(message):
-    user_number = str(message.chat.id)
-    list_number = [int(num) for num in user_number.split(",")]
-    max_index = list_number.index(max(list_number))
-    bot.reply_to(message, max_index)
+    user_namber2 = message.text
+    list_namber=[]
+    nambers = user_namber2.split(" ")
+    for namber in nambers :
+        list_namber.append(namber)
+    bot.reply_to(message, list_namber.index(max(list_namber)), reply_markup=markup)
 
+def echo_all(message):
+	bot.reply_to(message, "ok", reply_markup=markup)
+	
 bot.infinity_polling()
