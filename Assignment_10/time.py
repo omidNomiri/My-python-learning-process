@@ -4,9 +4,9 @@ class time:
         self.minute = m
         self.hours = h
 
-    def passing():
+    def passing(self):
         ...
     
-    def happen():
+    def happen(self):
         ...
     
