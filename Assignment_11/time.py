@@ -27,6 +27,11 @@ class Time:
     def time_to_seconds(self):
         return self.seconds + 60 * self.minutes + 3600 * self.hours
 
+    def GMT_to_tehran(self):
+        h_new = self.hours + 3
+        m_new = self.minutes + 30
+        return Time(h_new, m_new, 00)
+
     def fix(self):
         while True:
             if self.seconds >= 60:
