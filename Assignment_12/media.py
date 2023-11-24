@@ -5,6 +5,6 @@ class Media:
         self.IMDB_score = IMDB_score
         self.url = url
         self.duration = duration
-        self.casts = [casts]
-        self.genre = [genre]
+        self.casts = casts
+        self.genre = genre
         self.release_year = release_year

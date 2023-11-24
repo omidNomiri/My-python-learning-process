@@ -58,54 +58,51 @@ class Media_management:
             print("We dont have another type of movie")
             return
 
-        PRODUCTS.append(new_movie)
+        MOVIE_LIST.append(new_movie)
         print("movie add successful.")
 
-    def edit(self):
-        choice = int(input("you want change witch one?(1.name_2.price_3.storage): "))
-        if choice == 1:
-            for row in PRODUCTS:
-                print(row["name"],"\t",row["price"],"\t",row["storage"])
-            select = input("select your product name: ")
-            for row in PRODUCTS:
-                if row["name"] == select:
-                    new_product = input("New name: ")
-                    row["name"] = new_product
-            print("product edit operation success.")
-        if choice == 2:
-            for row in PRODUCTS:
-                print(row["name"],"\t",row["price"],"\t",row["storage"])
-            select = input("select your product name: ")
-            for row in PRODUCTS:
-                if row["name"] == select:
-                    new_product = input("New price: ")
-                    row["price"] = new_product
-            print("product edit operation success.")
-        if choice == 3:
-            for row in PRODUCTS:
-                print(row["name"],"\t",row["price"],"\t",row["storage"])
-            select = input("select your product name: ")
-            for row in PRODUCTS:
-                if row["name"] == select:
-                    new_product = input("New storage: ")
-                    row["storage"] = new_product
-            print("product edit operation success.")
+    @staticmethod
+    def edit():
+        name = str(input("Please enter your movie want edit:"))
+        for movie in MOVIE_LIST:    
+            if movie.name == name:
+                if hasattr(movie,"episode"):
+                    print(f"{movie.name}  {movie.director}  {movie.IMDB_score}  {movie.url}  {movie.duration}  {movie.casts}  {movie.genre}  {movie.release_year}  {movie.episode}")
+                    edit_attribute = int(input("1.name  2.director  3.IMDB_score  4.url  5.duration  6.actors  7.genre  8.release_year  9.episode"))
+                else:
+                    print(f"{movie.name}  {movie.director}  {movie.IMDB_score}  {movie.url}  {movie.duration}  {movie.casts}  {movie.genre}  {movie.release_year}")
+                    edit_attribute = int(input("1.name  2.director  3.IMDB_score  4.url  5.duration  6.actors  7.genre  8.release_year"))
+
+                new_attribute = input("Please enter new value: ")
+                if edit_attribute == 1:
+                    movie.name = new_attribute
+                elif edit_attribute == 2:
+                    movie.director = new_attribute
+                elif edit_attribute == 3:
+                    movie.IMDB_score = float(new_attribute)
+                elif edit_attribute == 4:
+                    movie.url = new_attribute
+                elif edit_attribute == 5:
+                    movie.duration = int(new_attribute)
+                elif edit_attribute == 6:
+                    movie.actors = list(new_attribute.split(","))
+                elif edit_attribute == 7:
+                    movie.genre = list(new_attribute.split(","))
+                elif edit_attribute == 8:
+                    movie.release_year = int(new_attribute)
+                elif edit_attribute == 9:
+                    movie.episode = int(new_attribute)
+
+                Database.write()
+                return
+        else:
+            print("We dont have this movie!")
 
     def remove(self):
-        global PRODUCTS
-        code = int(input("Please enter your product id: "))
-        new_products = [row for row in PRODUCTS if row['code'] != code]
-        PRODUCTS = new_products
-        print("Remove successful.")
+        ...
 
     def search(self):
-        user_search = input("Please enter your product id or name: ")
-        for product in PRODUCTS:
-            if product["code"]==user_search or product["name"]==user_search:
-                print(product["code"],"\t",product["name"],"\t",product["price"])
-                break
-        else:
-            print("We dont have any product with this code or name.")
+        ...
 
     def search_by_time(self):
         ...
@@ -134,7 +131,7 @@ while True:
 
     elif choice == 2:
         Media_management.edit()
-
+        
     elif choice == 3:
         Media_management.remove()
     

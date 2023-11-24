@@ -1,2 +1,0 @@
-film1,director1,9.36,www.google.com,120,[lily,tom],[action],1990
-film2,director2,7.02,www.google.com,100,[lily,tom],[romance,action],2011,11
