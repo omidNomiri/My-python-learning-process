@@ -1,10 +1,9 @@
-import film as Film
-import series as Series
-import documentary as Documentary
-import clip as Clip
-import actor as Actor
-import database as DB
-import media as Media
+from film import Film
+from series import Series
+from documentary import Documentary
+from clip import Clip
+from database import Database
+from database import MOVIE_LIST
 
 class Media_management:
     def __init__(self,id,name,score,duration):
@@ -20,6 +19,8 @@ class Media_management:
         print("3.Remove")
         print("4.Search")
         print("5.Search by time")
+        print("6.Show movie info")
+        print("7.Download")
         print("8.Exit")
 
     @staticmethod
@@ -30,26 +31,32 @@ class Media_management:
         IMDB_score = float(input("Please enter IMDB score movie: "))
         url = str(input("Please enter your movie url: "))
         duration = int(input("Please enter your movie duration(enter minute): "))
-        name_actor = str(input("Please enter your movie actors: "))
-        genre = str(input("Please enter your movie genre: "))
+        name_actor = str(input("Please separate the names with (,)\nPlease enter your movie actors: "))
+        name_actor = list(name_actor.split(","))
+        genre = str(input("Please separate the names with (,)\nPlease enter your movie genre: "))
+        genre = list(genre.split(","))
         release_year = int(input("Please enter your movie release year: "))
 
         if choice == 1:
             new_movie = Film(name,director,IMDB_score,url,duration,genre,release_year)
-            DB.MOVIE_LIST.append(new_movie)
-        
+            Database.MOVIE_LIST.append(new_movie)
+
         elif choice == 2:
             episode = int(input("Please enter number of episode: "))
             new_movie = Series(name,director,IMDB_score,url,duration,genre,release_year,episode)
-            DB.MOVIE_LIST.append(new_movie)
+            Database.MOVIE_LIST.append(new_movie)
 
         elif choice == 3:
             new_movie = Documentary(name,director,IMDB_score,url,duration,genre,release_year)
-            DB.MOVIE_LIST.append(new_movie)
+            Database.MOVIE_LIST.append(new_movie)
 
         elif choice == 4:
             new_movie = Clip(name,director,IMDB_score,url,duration,genre,release_year)
-            DB.MOVIE_LIST.append(new_movie)
+            Database.MOVIE_LIST.append(new_movie)
+
+        else:
+            print("We dont have another type of movie")
+            return
 
         PRODUCTS.append(new_movie)
         print("movie add successful.")
@@ -100,14 +107,52 @@ class Media_management:
         else:
             print("We dont have any product with this code or name.")
 
-    def show_info(self):
+    def search_by_time(self):
         ...
+
+    @staticmethod
+    def show_info():
+        for row in MOVIE_LIST:
+            if hasattr(row,"episode"):
+                print(f"{row.name}  {row.director}  {row.IMDB_score}  {row.url}  {row.duration}  {row.casts}  {row.genre}  {row.release_year}  {row.episode}")
+            else:
+                print(f"{row.name}  {row.director}  {row.IMDB_score}  {row.url}  {row.duration}  {row.casts}  {row.genre}  {row.release_year}")
 
     def download(self):
         ...
 
-Media_management.show_menu()
-choice = int(input("what do yo want? "))
+print("Loading")
+Database.read()
+print("Loading complete")
 
-if choice == 1:
-    Media_management.add() 
+while True:
+    Media_management.show_menu()
+    choice = int(input("what do yo want? "))
+
+    if choice == 1:
+        Media_management.add() 
+
+    elif choice == 2:
+        Media_management.edit()
+
+    elif choice == 3:
+        Media_management.remove()
+    
+    elif choice == 4:
+        Media_management.search()
+
+    elif choice == 5:
+        Media_management.search_by_time()
+
+    elif choice == 6:
+        Media_management.show_info()
+
+    elif choice == 7:
+        Media_management.download()
+
+    elif choice == 8:
+        print("Thank you for choosing us")
+        exit(0)
+
+    else:
+        print("Enter number between 1 and 8")
