@@ -17,5 +17,3 @@ def carpet_printer(number):
         for item in row:
             print(item, end=" ")
         print()
-
-carpet_printer(11)
