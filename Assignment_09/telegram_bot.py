@@ -7,7 +7,7 @@ import gtts
 import telebot
 from telebot import types
 
-bot = telebot.TeleBot("6836755262:AAET97-d45Q0Ax93tcphANQ-LWrTaQg_bRk", parse_mode=None)
+bot = telebot.TeleBot("Token place", parse_mode=None)
 
 markup = telebot.types.ReplyKeyboardMarkup(row_width=3)
 item_markup1 = telebot.types.KeyboardButton("/game")
