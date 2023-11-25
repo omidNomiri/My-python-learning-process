@@ -63,45 +63,67 @@ class Media_management:
 
     @staticmethod
     def edit():
-
         name = str(input("Please enter your movie want edit:"))
-        for movie in MOVIE_LIST:    
+        for movie in MOVIE_LIST:
             if movie.name == name:
-                if isinstance(movie,Series):
+                if isinstance(movie, Series):
                     print(f"{movie.name}  {movie.director}  {movie.IMDB_score}  {movie.url}  {movie.duration}  {movie.casts}  {movie.genre}  {movie.release_year}  {movie.episode}")
-                    edit_attribute = int(input("1.name  2.director  3.IMDB_score  4.url  5.duration  6.actors  7.genre  8.release_year  9.episode"))
+                    edit_attribute = int(input("1.name  2.director  3.IMDB_score  4.url  5.duration  6.actors  7.genre  8.release_year  9.episode\nwhich you want:"))
                 else:
                     print(f"{movie.name}  {movie.director}  {movie.IMDB_score}  {movie.url}  {movie.duration}  {movie.casts}  {movie.genre}  {movie.release_year}")
-                    edit_attribute = int(input("1.name  2.director  3.IMDB_score  4.url  5.duration  6.actors  7.genre  8.release_year"))
+                    edit_attribute = int(input("1.name  2.director  3.IMDB_score  4.url  5.duration  6.actors  7.genre  8.release_year\nwhich you want:"))
 
                 new_attribute = input("Please enter new value: ")
-                if new_attribute:
-                    if edit_attribute == 1:
-                        movie.name = new_attribute
-                    elif edit_attribute == 2:
-                        movie.director = new_attribute
-                    elif edit_attribute == 3:
-                        movie.IMDB_score = float(new_attribute)
-                    elif edit_attribute == 4:
-                        movie.url = new_attribute
-                    elif edit_attribute == 5:
-                        movie.duration = int(new_attribute)
-                    elif edit_attribute == 6:
-                        movie.actors = list(new_attribute.split(","))
-                    elif edit_attribute == 7:
-                        movie.genre = list(new_attribute.split(","))
-                    elif edit_attribute == 8:
-                        movie.release_year = int(new_attribute)
-                    elif edit_attribute == 9 and hasattr(movie, "episode"):
-                        movie.episode = int(new_attribute)
+                if edit_attribute == 1:
+                    movie.name = new_attribute
+                elif edit_attribute == 2:
+                    movie.director = new_attribute
+                elif edit_attribute == 3:
+                    movie.IMDB_score = float(new_attribute)
+                elif edit_attribute == 4:
+                    movie.url = new_attribute
+                elif edit_attribute == 5:
+                    movie.duration = int(new_attribute)
+                elif edit_attribute == 6:
+                    movie.actors = list(new_attribute.split(","))
+                elif edit_attribute == 7:
+                    movie.genre = list(new_attribute.split(","))
+                elif edit_attribute == 8:
+                    movie.release_year = int(new_attribute)
+                elif edit_attribute == 9 and isinstance(movie, Series):
+                    movie.episode = int(new_attribute)
+                print("operation successful")
+                return 
             else:
-                print("We dont have this movie!")
+                print("We dont have this movie!")  
 
-    def remove(self):
-        ...
+    @staticmethod
+    def remove():
+        global MOVIE_LIST
+        name = str(input("Please enter your movie want remove:"))
+        for movie in MOVIE_LIST:
+            if movie.name == name:
+                new_products = [movie for movie in MOVIE_LIST if movie.name != name]
+                MOVIE_LIST = new_products
+                print("operation successful")
+                return
+        else:
+            print("We dont have this movie!")
+            return
 
-    def search(self):
-        ...
+    @staticmethod
+    def search():
+        user_search = input("Please enter your movie name: ")
+        for row in MOVIE_LIST:
+            if row.name == user_search:
+                if isinstance(row,Series):
+                    print(f"{row.name}  {row.director}  {row.IMDB_score}  {row.url}  {row.duration}  {row.casts}  {row.genre}  {row.release_year}  {row.episode}")
+                    break
+                else:
+                    print(f"{row.name}  {row.director}  {row.IMDB_score}  {row.url}  {row.duration}  {row.casts}  {row.genre}  {row.release_year}")
+                    break
+        else:
+            print("We dont have any product with this code or name.")
 
     def search_by_time(self):
         ...
@@ -111,9 +133,9 @@ class Media_management:
         for row in MOVIE_LIST:
 
             if isinstance(row,Series):
-                print(f"{row.name},{row.director},{row.IMDB_score},{row.url},{row.duration},{row.casts},{row.genre},{row.release_year},{row.episode}")
+                print(f"{row.name}  {row.director}  {row.IMDB_score}  {row.url}  {row.duration}  {row.casts}  {row.genre}  {row.release_year}  {row.episode}")
             else:
-                print(f"{row.name},{row.director},{row.IMDB_score},{row.url},{row.duration},{row.casts},{row.genre},{row.release_year}")
+                print(f"{row.name}  {row.director}  {row.IMDB_score}  {row.url}  {row.duration}  {row.casts}  {row.genre}  {row.release_year}")
 
     def download(self):
         ...

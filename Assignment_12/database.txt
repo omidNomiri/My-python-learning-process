@@ -1,1 +1,1 @@
-film1,daey,10.0,www.H.com,130,['ali', 'omid', 'karim'],['action', 'romance'],2023
+film1,hamor,10.0,www.H.com,130,['ali', 'omid', 'karim'],['action', 'romance'],2023
