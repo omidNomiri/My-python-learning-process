@@ -38,21 +38,21 @@ class Media_management:
         release_year = int(input("Please enter your movie release year: "))
 
         if choice == 1:
-            new_movie = Film(name,director,IMDB_score,url,duration,genre,release_year)
-            Database.MOVIE_LIST.append(new_movie)
+            new_movie = Film(name,director,IMDB_score,url,duration,name_actor,genre,release_year)
+            MOVIE_LIST.append(new_movie)
 
         elif choice == 2:
             episode = int(input("Please enter number of episode: "))
-            new_movie = Series(name,director,IMDB_score,url,duration,genre,release_year,episode)
-            Database.MOVIE_LIST.append(new_movie)
+            new_movie = Series(name,director,IMDB_score,url,duration,name_actor,genre,release_year,episode)
+            MOVIE_LIST.append(new_movie)
 
         elif choice == 3:
-            new_movie = Documentary(name,director,IMDB_score,url,duration,genre,release_year)
-            Database.MOVIE_LIST.append(new_movie)
+            new_movie = Documentary(name,director,IMDB_score,url,duration,name_actor,genre,release_year)
+            MOVIE_LIST.append(new_movie)
 
         elif choice == 4:
-            new_movie = Clip(name,director,IMDB_score,url,duration,genre,release_year)
-            Database.MOVIE_LIST.append(new_movie)
+            new_movie = Clip(name,director,IMDB_score,url,duration,name_actor,genre,release_year)
+            MOVIE_LIST.append(new_movie)
 
         else:
             print("We dont have another type of movie")
@@ -63,10 +63,11 @@ class Media_management:
 
     @staticmethod
     def edit():
+
         name = str(input("Please enter your movie want edit:"))
         for movie in MOVIE_LIST:    
             if movie.name == name:
-                if hasattr(movie,"episode"):
+                if isinstance(movie,Series):
                     print(f"{movie.name}  {movie.director}  {movie.IMDB_score}  {movie.url}  {movie.duration}  {movie.casts}  {movie.genre}  {movie.release_year}  {movie.episode}")
                     edit_attribute = int(input("1.name  2.director  3.IMDB_score  4.url  5.duration  6.actors  7.genre  8.release_year  9.episode"))
                 else:
@@ -74,29 +75,27 @@ class Media_management:
                     edit_attribute = int(input("1.name  2.director  3.IMDB_score  4.url  5.duration  6.actors  7.genre  8.release_year"))
 
                 new_attribute = input("Please enter new value: ")
-                if edit_attribute == 1:
-                    movie.name = new_attribute
-                elif edit_attribute == 2:
-                    movie.director = new_attribute
-                elif edit_attribute == 3:
-                    movie.IMDB_score = float(new_attribute)
-                elif edit_attribute == 4:
-                    movie.url = new_attribute
-                elif edit_attribute == 5:
-                    movie.duration = int(new_attribute)
-                elif edit_attribute == 6:
-                    movie.actors = list(new_attribute.split(","))
-                elif edit_attribute == 7:
-                    movie.genre = list(new_attribute.split(","))
-                elif edit_attribute == 8:
-                    movie.release_year = int(new_attribute)
-                elif edit_attribute == 9:
-                    movie.episode = int(new_attribute)
-
-                Database.write()
-                return
-        else:
-            print("We dont have this movie!")
+                if new_attribute:
+                    if edit_attribute == 1:
+                        movie.name = new_attribute
+                    elif edit_attribute == 2:
+                        movie.director = new_attribute
+                    elif edit_attribute == 3:
+                        movie.IMDB_score = float(new_attribute)
+                    elif edit_attribute == 4:
+                        movie.url = new_attribute
+                    elif edit_attribute == 5:
+                        movie.duration = int(new_attribute)
+                    elif edit_attribute == 6:
+                        movie.actors = list(new_attribute.split(","))
+                    elif edit_attribute == 7:
+                        movie.genre = list(new_attribute.split(","))
+                    elif edit_attribute == 8:
+                        movie.release_year = int(new_attribute)
+                    elif edit_attribute == 9 and hasattr(movie, "episode"):
+                        movie.episode = int(new_attribute)
+            else:
+                print("We dont have this movie!")
 
     def remove(self):
         ...
@@ -110,10 +109,11 @@ class Media_management:
     @staticmethod
     def show_info():
         for row in MOVIE_LIST:
-            if hasattr(row,"episode"):
-                print(f"{row.name}  {row.director}  {row.IMDB_score}  {row.url}  {row.duration}  {row.casts}  {row.genre}  {row.release_year}  {row.episode}")
+
+            if isinstance(row,Series):
+                print(f"{row.name},{row.director},{row.IMDB_score},{row.url},{row.duration},{row.casts},{row.genre},{row.release_year},{row.episode}")
             else:
-                print(f"{row.name}  {row.director}  {row.IMDB_score}  {row.url}  {row.duration}  {row.casts}  {row.genre}  {row.release_year}")
+                print(f"{row.name},{row.director},{row.IMDB_score},{row.url},{row.duration},{row.casts},{row.genre},{row.release_year}")
 
     def download(self):
         ...
@@ -149,6 +149,7 @@ while True:
 
     elif choice == 8:
         print("Thank you for choosing us")
+        Database.write()
         exit(0)
 
     else:
