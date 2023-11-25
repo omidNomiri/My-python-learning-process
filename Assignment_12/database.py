@@ -32,4 +32,4 @@ class Database:
                     data = f"{row.name},{row.director},{row.IMDB_score},{row.url},{row.duration},{row.casts},{row.genre},{row.release_year},{row.episode}\n"
                 else:
                     data = f"{row.name},{row.director},{row.IMDB_score},{row.url},{row.duration},{row.casts},{row.genre},{row.release_year}\n"
-            database.write(data)
+                database.write(data)

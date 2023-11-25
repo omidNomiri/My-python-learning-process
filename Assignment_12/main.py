@@ -39,20 +39,16 @@ class Media_management:
 
         if choice == 1:
             new_movie = Film(name,director,IMDB_score,url,duration,name_actor,genre,release_year)
-            MOVIE_LIST.append(new_movie)
 
         elif choice == 2:
             episode = int(input("Please enter number of episode: "))
             new_movie = Series(name,director,IMDB_score,url,duration,name_actor,genre,release_year,episode)
-            MOVIE_LIST.append(new_movie)
 
         elif choice == 3:
             new_movie = Documentary(name,director,IMDB_score,url,duration,name_actor,genre,release_year)
-            MOVIE_LIST.append(new_movie)
 
         elif choice == 4:
             new_movie = Clip(name,director,IMDB_score,url,duration,name_actor,genre,release_year)
-            MOVIE_LIST.append(new_movie)
 
         else:
             print("We dont have another type of movie")
@@ -113,9 +109,9 @@ class Media_management:
 
     @staticmethod
     def search():
-        user_search = input("Please enter your movie name: ")
+        user_want = input("Please enter your movie name: ")
         for row in MOVIE_LIST:
-            if row.name == user_search:
+            if row.name == user_want:
                 if isinstance(row,Series):
                     print(f"{row.name}  {row.director}  {row.IMDB_score}  {row.url}  {row.duration}  {row.casts}  {row.genre}  {row.release_year}  {row.episode}")
                     break
@@ -123,10 +119,18 @@ class Media_management:
                     print(f"{row.name}  {row.director}  {row.IMDB_score}  {row.url}  {row.duration}  {row.casts}  {row.genre}  {row.release_year}")
                     break
         else:
-            print("We dont have any product with this code or name.")
+            print("We dont have this movie!")
 
-    def search_by_time(self):
-        ...
+    @staticmethod
+    def search_by_time():
+        user_time_a = int(input("Please enter your movie time zone(smaller time): ")) - 1
+        user_time_b = int(input("Please enter your movie time zone(bigger time): ") ) + 1
+        for row in MOVIE_LIST:
+            if int(row.duration) >= user_time_a and int(row.duration) <= user_time_b:
+                if isinstance(row,Series):
+                    print(f"{row.name}  {row.director}  {row.IMDB_score}  {row.url}  {row.duration}  {row.casts}  {row.genre}  {row.release_year}  {row.episode}")
+                else:
+                    print(f"{row.name}  {row.director}  {row.IMDB_score}  {row.url}  {row.duration}  {row.casts}  {row.genre}  {row.release_year}")
 
     @staticmethod
     def show_info():

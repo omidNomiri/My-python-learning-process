@@ -1,1 +1,4 @@
 film1,hamor,10.0,www.H.com,130,['ali', 'omid', 'karim'],['action', 'romance'],2023
+film2,hamor,10.0,www.H.com,100,['ali', 'omid', 'karim'],['action', 'romance'],2023
+film3,hamor,10.0,www.H.com,160,['ali', 'omid', 'karim'],['action', 'romance'],2023
+sreies1,famir,7.65,www.,80,['ali', 'mmd', 'sara'],['action'],2022,12
