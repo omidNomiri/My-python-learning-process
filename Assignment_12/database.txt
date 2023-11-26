@@ -1,4 +1,0 @@
-openhimer,hamor,10.0,https://www.youtube.com/watch?v=uYPbbksJxIg&pp=ygUJb3BlbmhpbWVy,130,['ali', 'omid', 'karim'],['action', 'romance'],2023
-film2,hamor,8.60,www.H.com,100,['ali', 'karim'],['action', 'romance'],2023
-film3,hamor,6.24,www.H.com,160,['ali', 'karim'],['action', 'romance'],2023
-sreies1,famir,7.81,www.,80,['ali', 'mmd', 'sara'],['action'],2022,12
