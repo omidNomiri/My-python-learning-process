@@ -6,12 +6,9 @@ from database import Database
 from database import MOVIE_LIST
 import pytube
 
-class Media_management:
-    def __init__(self,id,name,score,duration):
-        self.id = id
-        self.name = name
-        self.score = score
-        self.duration = duration
+class Media_management_app:
+    def __init__(self):
+        ...
 
     @staticmethod
     def show_menu():
@@ -99,8 +96,8 @@ class Media_management:
         name = str(input("Please enter your movie want remove:"))
         for movie in MOVIE_LIST:
             if movie.name == name:
-                new_products = [movie for movie in MOVIE_LIST if movie.name != name]
-                MOVIE_LIST = new_products
+                new_movie = [movie for movie in MOVIE_LIST if movie.name != name]
+                MOVIE_LIST = new_movie
                 print("operation successful")
                 return
         else:
@@ -109,9 +106,9 @@ class Media_management:
 
     @staticmethod
     def search():
-        user_want = input("Please enter your movie name: ")
+        name = input("Please enter your movie name: ")
         for row in MOVIE_LIST:
-            if row.name == user_want:
+            if row.name == name:
                 if isinstance(row,Series):
                     print(f"{row.name}  {row.director}  {row.IMDB_score}  {row.url}  {row.duration}  {row.actor}  {row.genre}  {row.release_year}  {row.episode}")
                     break
@@ -123,10 +120,10 @@ class Media_management:
 
     @staticmethod
     def search_by_time():
-        user_time_a = int(input("Please enter your movie time zone(smaller time): ")) - 1
-        user_time_b = int(input("Please enter your movie time zone(bigger time): ") ) + 1
+        small_time = int(input("Please enter your movie time zone(smaller time): ")) - 1
+        big_time = int(input("Please enter your movie time zone(bigger time): ") ) + 1
         for row in MOVIE_LIST:
-            if int(row.duration) >= user_time_a and int(row.duration) <= user_time_b:
+            if int(row.duration) >= small_time and int(row.duration) <= big_time:
                 if isinstance(row,Series):
                     print(f"{row.name}  {row.director}  {row.IMDB_score}  {row.url}  {row.duration}  {row.actor}  {row.genre}  {row.release_year}  {row.episode}")
                 else:
@@ -134,19 +131,19 @@ class Media_management:
 
     @staticmethod
     def show_info():
-        for row in MOVIE_LIST:
+        for movie in MOVIE_LIST:
 
-            if isinstance(row,Series):
-                print(f"{row.name}  {row.director}  {row.IMDB_score}  {row.url}  {row.duration}  {row.actor}  {row.genre}  {row.release_year}  {row.episode}")
+            if isinstance(movie,Series):
+                print(f"{movie.name}  {movie.director}  {movie.IMDB_score}  {movie.url}  {movie.duration}  {movie.actor}  {movie.genre}  {movie.release_year}  {movie.episode}")
             else:
-                print(f"{row.name}  {row.director}  {row.IMDB_score}  {row.url}  {row.duration}  {row.actor}  {row.genre}  {row.release_year}")
+                print(f"{movie.name}  {movie.director}  {movie.IMDB_score}  {movie.url}  {movie.duration}  {movie.actor}  {movie.genre}  {movie.release_year}")
 
     @staticmethod
     def download():
         user_want = input("Please enter your movie name: ")
-        for row in MOVIE_LIST:
-            if row.name == user_want:
-                pytube.YouTube(row.url).streams.first().download()
+        for movie in MOVIE_LIST:
+            if movie.name == user_want:
+                pytube.YouTube(movie.url).streams.first().download()
                 print("download completed.")
                 break
         else:
@@ -158,29 +155,29 @@ Database.read()
 print("Loading complete")
 
 while True:
-    Media_management.show_menu()
+    Media_management_app.show_menu()
     choice = int(input("what do yo want? "))
 
     if choice == 1:
-        Media_management.add() 
+        Media_management_app.add() 
 
     elif choice == 2:
-        Media_management.edit()
+        Media_management_app.edit()
         
     elif choice == 3:
-        Media_management.remove()
+        Media_management_app.remove()
     
     elif choice == 4:
-        Media_management.search()
+        Media_management_app.search()
 
     elif choice == 5:
-        Media_management.search_by_time()
+        Media_management_app.search_by_time()
 
     elif choice == 6:
-        Media_management.show_info()
+        Media_management_app.show_info()
 
     elif choice == 7:
-        Media_management.download()
+        Media_management_app.download()
 
     elif choice == 8:
         print("Thank you for choosing us")
