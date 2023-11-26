@@ -4,6 +4,7 @@ from documentary import Documentary
 from clip import Clip
 from database import Database
 from database import MOVIE_LIST
+import pytube
 
 class Media_management:
     def __init__(self,id,name,score,duration):
@@ -60,13 +61,13 @@ class Media_management:
     @staticmethod
     def edit():
         name = str(input("Please enter your movie want edit:"))
-        for movie in MOVIE_LIST:
+        for movie in (MOVIE_LIST):
             if movie.name == name:
                 if isinstance(movie, Series):
-                    print(f"{movie.name}  {movie.director}  {movie.IMDB_score}  {movie.url}  {movie.duration}  {movie.casts}  {movie.genre}  {movie.release_year}  {movie.episode}")
+                    print(f"{movie.name}  {movie.director}  {movie.IMDB_score}  {movie.url}  {movie.duration}  {movie.actor}  {movie.genre}  {movie.release_year}  {movie.episode}")
                     edit_attribute = int(input("1.name  2.director  3.IMDB_score  4.url  5.duration  6.actors  7.genre  8.release_year  9.episode\nwhich you want:"))
                 else:
-                    print(f"{movie.name}  {movie.director}  {movie.IMDB_score}  {movie.url}  {movie.duration}  {movie.casts}  {movie.genre}  {movie.release_year}")
+                    print(f"{movie.name}  {movie.director}  {movie.IMDB_score}  {movie.url}  {movie.duration}  {movie.actor}  {movie.genre}  {movie.release_year}")
                     edit_attribute = int(input("1.name  2.director  3.IMDB_score  4.url  5.duration  6.actors  7.genre  8.release_year\nwhich you want:"))
 
                 new_attribute = input("Please enter new value: ")
@@ -81,7 +82,7 @@ class Media_management:
                 elif edit_attribute == 5:
                     movie.duration = int(new_attribute)
                 elif edit_attribute == 6:
-                    movie.actors = list(new_attribute.split(","))
+                    movie.actor = list(new_attribute.split(","))
                 elif edit_attribute == 7:
                     movie.genre = list(new_attribute.split(","))
                 elif edit_attribute == 8:
@@ -90,8 +91,7 @@ class Media_management:
                     movie.episode = int(new_attribute)
                 print("operation successful")
                 return 
-            else:
-                print("We dont have this movie!")  
+        print("We dont have this movie!")
 
     @staticmethod
     def remove():
@@ -113,10 +113,10 @@ class Media_management:
         for row in MOVIE_LIST:
             if row.name == user_want:
                 if isinstance(row,Series):
-                    print(f"{row.name}  {row.director}  {row.IMDB_score}  {row.url}  {row.duration}  {row.casts}  {row.genre}  {row.release_year}  {row.episode}")
+                    print(f"{row.name}  {row.director}  {row.IMDB_score}  {row.url}  {row.duration}  {row.actor}  {row.genre}  {row.release_year}  {row.episode}")
                     break
                 else:
-                    print(f"{row.name}  {row.director}  {row.IMDB_score}  {row.url}  {row.duration}  {row.casts}  {row.genre}  {row.release_year}")
+                    print(f"{row.name}  {row.director}  {row.IMDB_score}  {row.url}  {row.duration}  {row.actor}  {row.genre}  {row.release_year}")
                     break
         else:
             print("We dont have this movie!")
@@ -128,21 +128,30 @@ class Media_management:
         for row in MOVIE_LIST:
             if int(row.duration) >= user_time_a and int(row.duration) <= user_time_b:
                 if isinstance(row,Series):
-                    print(f"{row.name}  {row.director}  {row.IMDB_score}  {row.url}  {row.duration}  {row.casts}  {row.genre}  {row.release_year}  {row.episode}")
+                    print(f"{row.name}  {row.director}  {row.IMDB_score}  {row.url}  {row.duration}  {row.actor}  {row.genre}  {row.release_year}  {row.episode}")
                 else:
-                    print(f"{row.name}  {row.director}  {row.IMDB_score}  {row.url}  {row.duration}  {row.casts}  {row.genre}  {row.release_year}")
+                    print(f"{row.name}  {row.director}  {row.IMDB_score}  {row.url}  {row.duration}  {row.actor}  {row.genre}  {row.release_year}")
 
     @staticmethod
     def show_info():
         for row in MOVIE_LIST:
 
             if isinstance(row,Series):
-                print(f"{row.name}  {row.director}  {row.IMDB_score}  {row.url}  {row.duration}  {row.casts}  {row.genre}  {row.release_year}  {row.episode}")
+                print(f"{row.name}  {row.director}  {row.IMDB_score}  {row.url}  {row.duration}  {row.actor}  {row.genre}  {row.release_year}  {row.episode}")
             else:
-                print(f"{row.name}  {row.director}  {row.IMDB_score}  {row.url}  {row.duration}  {row.casts}  {row.genre}  {row.release_year}")
+                print(f"{row.name}  {row.director}  {row.IMDB_score}  {row.url}  {row.duration}  {row.actor}  {row.genre}  {row.release_year}")
 
-    def download(self):
-        ...
+    @staticmethod
+    def download():
+        user_want = input("Please enter your movie name: ")
+        for row in MOVIE_LIST:
+            if row.name == user_want:
+                pytube.YouTube(row.url).streams.first().download()
+                print("download completed.")
+                break
+        else:
+            print("We dont have this movie!")
+        
 
 print("Loading")
 Database.read()

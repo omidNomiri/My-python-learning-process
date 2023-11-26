@@ -1,3 +1,3 @@
 class Actor:
-    def __init__(self):
-        self.actor = ...
+    def __init__(self,actor):
+        self.actor = actor
