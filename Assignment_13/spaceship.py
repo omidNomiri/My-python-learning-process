@@ -22,7 +22,7 @@ class spaceship(arcade.Sprite):
 class Game(arcade.Window):
     def __init__(self):
         super().__init__(width=480,height=720,title="on star")
-        arcade.set_background_color(arcade.color.DARK_BLUE)
+        arcade.set_background_color(arcade.color.DARK_VIOLET)
         self.background = arcade.load_texture(":resources:images/backgrounds/stars.png")
         self.defender = spaceship(self)
         self.enemy = Enemy(self)
