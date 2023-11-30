@@ -28,16 +28,11 @@ You can install these libraries using the pip command:
 - ``` pip install persiantools ```
 - ``` pip install gTTS ```
 
-
 After installing the libraries, you can set up the bot by running the Python file.
 
 ## Usage
 
 To use this bot, you first need to add the bot in Telegram. Then, you can use the various features of the bot using different commands. Each command starts with a "/" and specifies the desired feature. For example, if you want to create a QR code, you can send the "/qrcode" command.
-
-## Contribution
-
-If you have a suggestion for improving this bot, please create a Pull Request or register an Issue. Also, if you encounter a problem, you can register an Issue.
 
 ## License
 
