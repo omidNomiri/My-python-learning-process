@@ -1,4 +1,3 @@
-import random
 import arcade
 from spaceship import Spaceship
 from enemy import Enemy
@@ -10,6 +9,11 @@ class Game(arcade.Window):
         self.background = arcade.load_texture(":resources:images/backgrounds/stars.png")
         self.defender = Spaceship(self.width,self.height)
         self.enemy_list = []
+        arcade.schedule(self.add_enemy, 3)
+
+    def add_enemy(self, delta_time):
+        new_enemy = Enemy(self.width, self.height)
+        self.enemy_list.append(new_enemy)
 
     def on_draw(self):
         arcade.start_render()
@@ -61,9 +65,7 @@ class Game(arcade.Window):
             if bullet.center_y < 0:
                 self.defender.bullet_list.remove(bullet)
 
-        if random.randint(1,100) == 1:
-            self.new_enemy = Enemy(self.width,self.height)
-            self.enemy_list.append(self.new_enemy)
+        
 
 window = Game()
 arcade.run()
