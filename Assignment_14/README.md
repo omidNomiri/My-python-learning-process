@@ -25,14 +25,15 @@ A simple space defender game built using the Arcade library in Python.
 
 Make sure you have Python and the Arcade library installed.
 
-```
+```bash
 pip install arcade
 ```
 
 ### How to Run
 
 Clone the repository and run the game.py file.
-```
+
+```bash
 python game.py
 ```
 
