@@ -26,6 +26,19 @@ class Snake(arcade.Sprite):
         self.center_x += self.change_x * self.speed
         self.center_y += self.change_y * self.speed
 
+    def move_with_ai(self, center_x, center_y):
+        if self.center_y > center_y:
+            self.center_y -= self.speed
+
+        if self.center_y < center_y:
+            self.center_y += self.speed
+
+        if self.center_x < center_x:
+            self.center_x += self.speed
+            
+        if self.center_x > center_x:
+            self.center_x -= self.speed
+
     def eat_meatloaf(self, meatloaf):
         del meatloaf
         self.score += 2

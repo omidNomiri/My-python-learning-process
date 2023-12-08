@@ -1,5 +1,3 @@
-from random import randint
-from time import sleep
 import arcade
 from snake import Snake
 from food import Meatloaf
@@ -28,6 +26,7 @@ class Game(arcade.Window):
         if symbol == arcade.key.RIGHT or symbol == arcade.key.D:
             self.snake.change_x = 1
             self.snake.change_y = 0
+
     def on_draw(self):
         arcade.start_render()
         
