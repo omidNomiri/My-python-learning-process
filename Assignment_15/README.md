@@ -45,9 +45,9 @@ python main.py
 
 ## Screenshots
 
-![Game Screenshot](https://github.com/omidNomiri/My-learning-process/blob/main/Assignment_15/game_image.png)
+![Alt text](game_image.png)
 
-![Game Screenshot](https://github.com/omidNomiri/My-learning-process/blob/main/Assignment_15/README.md)
+![Game Over Screenshot](gameover_image.png)
 
 ## License
 
