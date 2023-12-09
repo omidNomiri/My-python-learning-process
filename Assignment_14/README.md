@@ -4,7 +4,7 @@ A simple space defender game built using the Arcade library in Python.
 
 ## Screenshots
 
-![Game Screenshot](C:\Users\Omid\My-learning-process\Assignment_14\Screenshot_01.png)
+![Game Screenshot](https://github.com/omidNomiri/My-learning-process/blob/71a2b7fed454afe9b22fcc03d9c28fda85e08826/Assignment_14/Screenshot_01.png)
 
 ## How to Play
 
