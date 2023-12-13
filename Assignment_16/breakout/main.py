@@ -1,57 +1,7 @@
-import random
 import arcade
-
-class Ball(arcade.Sprite):
-    def __init__(self,game):
-        super().__init__()
-        self.width = 10
-        self.height = 10
-        self.center_x = game.width//2
-        self.center_y = 300
-        self.change_x = random.choice([1, -1])
-        self.change_y = -1
-        self.radius = 12
-        self.speed = 3
-        self.color = arcade.color.UA_RED
-
-    def draw(self):
-        arcade.draw_circle_filled(self.center_x, self.center_y, self.radius, self.color)
-
-    def move(self):
-        self.center_x += self.change_x * self.speed
-        self.center_y += self.change_y * self.speed
-
-class Block(arcade.Sprite):
-    def __init__(self, center_x, center_y, color):
-        super().__init__()
-        self.width = 50
-        self.height = 20
-        self.center_x = center_x
-        self.center_y = center_y
-        self.color = color
-
-    def draw(self):
-        arcade.draw_rectangle_filled(self.center_x, self.center_y, self.width, self.height, self.color)
-
-class Rocket(arcade.Sprite):
-    def __init__(self, game):
-        super().__init__()
-        self.width = 80
-        self.height = 20
-        self.center_x = game.width//2
-        self.center_y = 30
-        self.change_x = 0
-        self.change_y = 0
-        self.color = arcade.color.REDWOOD
-        self.speed = 3
-        self.score = 0
-        self.health = 3
-
-    def draw(self):
-        arcade.draw_rectangle_filled(self.center_x, self.center_y, self.width, self.height, self.color)
-
-    def move(self):
-        self.center_x += self.change_x * self.speed
+from ball import Ball
+from block import Block
+from rocket import Rocket
 
 class Game(arcade.Window):
     def __init__(self):
