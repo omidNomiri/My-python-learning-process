@@ -369,6 +369,9 @@ border: 2px solid rgb(79, 73, 64) ;</string>
     <property name="text">
      <string>0</string>
     </property>
+    <property name="maxLength">
+     <number>10</number>
+    </property>
     <property name="alignment">
      <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
     </property>

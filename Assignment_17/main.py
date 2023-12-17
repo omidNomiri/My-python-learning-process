@@ -52,23 +52,24 @@ class Calculator:
         self.current_text = "0"
         more_window.text.setText(self.current_text)
         self.operation = opr
+        self.more_Mathematics()
 
     def more_Mathematics(self):
-        self.first_number = radians.self.first_number
+        self.first_number = float(self.first_number)
         if self.operation == "sin":
-            result = sin(self.first_number)
+            result = sin(radians(self.first_number))
         elif self.operation == "cos":
-            result = cos(self.first_number)
+            result = cos(radians(self.first_number))
         elif self.operation == "tan":
-            result = tan(self.first_number)
+            result = tan(radians(self.first_number))
         elif self.operation == "cot":
-            result = cot(self.first_number)
+            result = cot(radians(self.first_number))
         elif self.operation == "log":
             result = log(self.first_number)
         elif self.operation == "sqrt":
             result = sqrt(self.first_number)
 
-        more_window.text.setText(result)
+        more_window.text.setText(str(result))
 
     def open_another_window(self):
         window.close()
@@ -83,6 +84,7 @@ class Calculator:
         self.first_number = Decimal("0")
         self.operation = ""
         window.text.setText(self.current_text)
+        more_window.text.setText(self.current_text)
 
 app = QApplication([])
 
@@ -133,6 +135,5 @@ more_window.btn_log.clicked.connect(partial(calculator.set_operation_more_window
 more_window.btn_sqrt.clicked.connect(partial(calculator.set_operation_more_window, "sqrt"))
 more_window.btn_less.clicked.connect(calculator.open_main_window)
 more_window.btn_clear.clicked.connect(calculator.clear)
-
 
 app.exec()
