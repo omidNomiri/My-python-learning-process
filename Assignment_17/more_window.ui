@@ -318,7 +318,7 @@ border: 2px solid rgb(79, 73, 64) ;</string>
      <string>0</string>
     </property>
    </widget>
-   <widget class="QPushButton" name="btn_less">
+   <widget class="QPushButton" name="btn_back">
     <property name="geometry">
      <rect>
       <x>60</x>
@@ -339,7 +339,7 @@ background-color: rgb(85, 85, 86);
 border: 2px solid rgb(79, 73, 64) ;</string>
     </property>
     <property name="text">
-     <string>less</string>
+     <string>back</string>
     </property>
    </widget>
    <widget class="QLineEdit" name="text">

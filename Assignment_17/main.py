@@ -133,7 +133,7 @@ more_window.btn_tan.clicked.connect(partial(calculator.set_operation_more_window
 more_window.btn_cot.clicked.connect(partial(calculator.set_operation_more_window, "cot"))
 more_window.btn_log.clicked.connect(partial(calculator.set_operation_more_window, "log"))
 more_window.btn_sqrt.clicked.connect(partial(calculator.set_operation_more_window, "sqrt"))
-more_window.btn_less.clicked.connect(calculator.open_main_window)
+more_window.btn_back.clicked.connect(calculator.open_main_window)
 more_window.btn_clear.clicked.connect(calculator.clear)
 
 app.exec()
