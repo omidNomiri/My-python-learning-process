@@ -6,8 +6,8 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>591</width>
-    <height>519</height>
+    <width>534</width>
+    <height>536</height>
    </rect>
   </property>
   <property name="sizePolicy">
@@ -19,142 +19,20 @@
   <property name="windowTitle">
    <string>MainWindow</string>
   </property>
+  <property name="toolTip">
+   <string/>
+  </property>
+  <property name="whatsThis">
+   <string/>
+  </property>
+  <property name="styleSheet">
+   <string notr="true">background-color: rgb(255, 255, 255);
+border-radius: 5px;
+</string>
+  </property>
   <widget class="QWidget" name="centralwidget">
    <layout class="QGridLayout" name="gridLayout">
-    <item row="1" column="2">
-     <widget class="QPushButton" name="btn_number_6">
-      <property name="sizePolicy">
-       <sizepolicy hsizetype="Expanding" vsizetype="Expanding">
-        <horstretch>0</horstretch>
-        <verstretch>0</verstretch>
-       </sizepolicy>
-      </property>
-      <property name="font">
-       <font>
-        <family>Vazirmatn Light</family>
-        <pointsize>48</pointsize>
-       </font>
-      </property>
-      <property name="text">
-       <string/>
-      </property>
-     </widget>
-    </item>
-    <item row="0" column="1">
-     <widget class="QPushButton" name="btn_number_2">
-      <property name="sizePolicy">
-       <sizepolicy hsizetype="Expanding" vsizetype="Expanding">
-        <horstretch>0</horstretch>
-        <verstretch>0</verstretch>
-       </sizepolicy>
-      </property>
-      <property name="font">
-       <font>
-        <family>Vazirmatn Light</family>
-        <pointsize>48</pointsize>
-       </font>
-      </property>
-      <property name="text">
-       <string/>
-      </property>
-     </widget>
-    </item>
-    <item row="2" column="1">
-     <widget class="QPushButton" name="btn_number_8">
-      <property name="sizePolicy">
-       <sizepolicy hsizetype="Expanding" vsizetype="Expanding">
-        <horstretch>0</horstretch>
-        <verstretch>0</verstretch>
-       </sizepolicy>
-      </property>
-      <property name="font">
-       <font>
-        <family>Vazirmatn Light</family>
-        <pointsize>48</pointsize>
-       </font>
-      </property>
-      <property name="text">
-       <string/>
-      </property>
-     </widget>
-    </item>
-    <item row="2" column="0">
-     <widget class="QPushButton" name="btn_number_7">
-      <property name="sizePolicy">
-       <sizepolicy hsizetype="Expanding" vsizetype="Expanding">
-        <horstretch>0</horstretch>
-        <verstretch>0</verstretch>
-       </sizepolicy>
-      </property>
-      <property name="font">
-       <font>
-        <family>Vazirmatn Light</family>
-        <pointsize>48</pointsize>
-       </font>
-      </property>
-      <property name="text">
-       <string/>
-      </property>
-     </widget>
-    </item>
-    <item row="1" column="0">
-     <widget class="QPushButton" name="btn_number_4">
-      <property name="sizePolicy">
-       <sizepolicy hsizetype="Expanding" vsizetype="Expanding">
-        <horstretch>0</horstretch>
-        <verstretch>0</verstretch>
-       </sizepolicy>
-      </property>
-      <property name="font">
-       <font>
-        <family>Vazirmatn Light</family>
-        <pointsize>48</pointsize>
-       </font>
-      </property>
-      <property name="text">
-       <string/>
-      </property>
-     </widget>
-    </item>
-    <item row="1" column="1">
-     <widget class="QPushButton" name="btn_number_5">
-      <property name="sizePolicy">
-       <sizepolicy hsizetype="Expanding" vsizetype="Expanding">
-        <horstretch>0</horstretch>
-        <verstretch>0</verstretch>
-       </sizepolicy>
-      </property>
-      <property name="font">
-       <font>
-        <family>Vazirmatn Light</family>
-        <pointsize>48</pointsize>
-       </font>
-      </property>
-      <property name="text">
-       <string/>
-      </property>
-     </widget>
-    </item>
-    <item row="2" column="2">
-     <widget class="QPushButton" name="btn_number_9">
-      <property name="sizePolicy">
-       <sizepolicy hsizetype="Expanding" vsizetype="Expanding">
-        <horstretch>0</horstretch>
-        <verstretch>0</verstretch>
-       </sizepolicy>
-      </property>
-      <property name="font">
-       <font>
-        <family>Vazirmatn Light</family>
-        <pointsize>48</pointsize>
-       </font>
-      </property>
-      <property name="text">
-       <string/>
-      </property>
-     </widget>
-    </item>
-    <item row="0" column="0">
+    <item row="3" column="0">
      <widget class="QPushButton" name="btn_number_1">
       <property name="sizePolicy">
        <sizepolicy hsizetype="Expanding" vsizetype="Expanding">
@@ -168,12 +46,100 @@
         <pointsize>48</pointsize>
        </font>
       </property>
+      <property name="styleSheet">
+       <string notr="true">background-color: rgb(232, 232, 232);</string>
+      </property>
       <property name="text">
        <string/>
       </property>
      </widget>
     </item>
-    <item row="0" column="2">
+    <item row="6" column="1">
+     <widget class="QPushButton" name="btn_equal">
+      <property name="sizePolicy">
+       <sizepolicy hsizetype="Expanding" vsizetype="Expanding">
+        <horstretch>0</horstretch>
+        <verstretch>1</verstretch>
+       </sizepolicy>
+      </property>
+      <property name="maximumSize">
+       <size>
+        <width>16777215</width>
+        <height>60</height>
+       </size>
+      </property>
+      <property name="text">
+       <string/>
+      </property>
+     </widget>
+    </item>
+    <item row="5" column="2">
+     <widget class="QPushButton" name="btn_number_9">
+      <property name="sizePolicy">
+       <sizepolicy hsizetype="Expanding" vsizetype="Expanding">
+        <horstretch>0</horstretch>
+        <verstretch>0</verstretch>
+       </sizepolicy>
+      </property>
+      <property name="font">
+       <font>
+        <family>Vazirmatn Light</family>
+        <pointsize>48</pointsize>
+       </font>
+      </property>
+      <property name="styleSheet">
+       <string notr="true">background-color: rgb(232, 232, 232);</string>
+      </property>
+      <property name="text">
+       <string/>
+      </property>
+     </widget>
+    </item>
+    <item row="4" column="1">
+     <widget class="QPushButton" name="btn_number_5">
+      <property name="sizePolicy">
+       <sizepolicy hsizetype="Expanding" vsizetype="Expanding">
+        <horstretch>0</horstretch>
+        <verstretch>0</verstretch>
+       </sizepolicy>
+      </property>
+      <property name="font">
+       <font>
+        <family>Vazirmatn Light</family>
+        <pointsize>48</pointsize>
+       </font>
+      </property>
+      <property name="styleSheet">
+       <string notr="true">background-color: rgb(232, 232, 232);</string>
+      </property>
+      <property name="text">
+       <string/>
+      </property>
+     </widget>
+    </item>
+    <item row="5" column="0">
+     <widget class="QPushButton" name="btn_number_7">
+      <property name="sizePolicy">
+       <sizepolicy hsizetype="Expanding" vsizetype="Expanding">
+        <horstretch>0</horstretch>
+        <verstretch>0</verstretch>
+       </sizepolicy>
+      </property>
+      <property name="font">
+       <font>
+        <family>Vazirmatn Light</family>
+        <pointsize>48</pointsize>
+       </font>
+      </property>
+      <property name="styleSheet">
+       <string notr="true">background-color: rgb(232, 232, 232);</string>
+      </property>
+      <property name="text">
+       <string/>
+      </property>
+     </widget>
+    </item>
+    <item row="3" column="2">
      <widget class="QPushButton" name="btn_number_3">
       <property name="sizePolicy">
        <sizepolicy hsizetype="Expanding" vsizetype="Expanding">
@@ -186,6 +152,226 @@
         <family>Vazirmatn Light</family>
         <pointsize>48</pointsize>
        </font>
+      </property>
+      <property name="styleSheet">
+       <string notr="true">background-color: rgb(232, 232, 232);</string>
+      </property>
+      <property name="text">
+       <string/>
+      </property>
+     </widget>
+    </item>
+    <item row="0" column="0" colspan="3">
+     <widget class="QWidget" name="widget" native="true">
+      <property name="sizePolicy">
+       <sizepolicy hsizetype="Expanding" vsizetype="Ignored">
+        <horstretch>1</horstretch>
+        <verstretch>1</verstretch>
+       </sizepolicy>
+      </property>
+      <widget class="QPushButton" name="btn_trun_X">
+       <property name="geometry">
+        <rect>
+         <x>0</x>
+         <y>10</y>
+         <width>90</width>
+         <height>90</height>
+        </rect>
+       </property>
+       <property name="font">
+        <font>
+         <family>Sitka Small</family>
+         <pointsize>36</pointsize>
+        </font>
+       </property>
+       <property name="styleSheet">
+        <string notr="true">color: rgb(0, 0, 255);
+background-color: rgb(255, 255, 255);</string>
+       </property>
+       <property name="text">
+        <string>X</string>
+       </property>
+      </widget>
+      <widget class="QPushButton" name="btn_turn_O">
+       <property name="geometry">
+        <rect>
+         <x>90</x>
+         <y>10</y>
+         <width>90</width>
+         <height>90</height>
+        </rect>
+       </property>
+       <property name="font">
+        <font>
+         <family>Sitka Small</family>
+         <pointsize>36</pointsize>
+        </font>
+       </property>
+       <property name="styleSheet">
+        <string notr="true">color: rgb(255, 0, 0);
+background-color: rgb(255, 255, 255);</string>
+       </property>
+       <property name="text">
+        <string>O</string>
+       </property>
+      </widget>
+      <widget class="QPushButton" name="btn_reload">
+       <property name="geometry">
+        <rect>
+         <x>439</x>
+         <y>10</y>
+         <width>61</width>
+         <height>71</height>
+        </rect>
+       </property>
+       <property name="sizePolicy">
+        <sizepolicy hsizetype="Minimum" vsizetype="Expanding">
+         <horstretch>0</horstretch>
+         <verstretch>0</verstretch>
+        </sizepolicy>
+       </property>
+       <property name="font">
+        <font>
+         <family>Segoe UI Semibold</family>
+         <pointsize>48</pointsize>
+         <bold>true</bold>
+        </font>
+       </property>
+       <property name="styleSheet">
+        <string notr="true">color: rgb(0, 0, 0);</string>
+       </property>
+       <property name="text">
+        <string>↻</string>
+       </property>
+       <property name="iconSize">
+        <size>
+         <width>50</width>
+         <height>50</height>
+        </size>
+       </property>
+      </widget>
+     </widget>
+    </item>
+    <item row="6" column="0">
+     <widget class="QPushButton" name="pushButton">
+      <property name="sizePolicy">
+       <sizepolicy hsizetype="Expanding" vsizetype="Expanding">
+        <horstretch>0</horstretch>
+        <verstretch>1</verstretch>
+       </sizepolicy>
+      </property>
+      <property name="maximumSize">
+       <size>
+        <width>16777215</width>
+        <height>60</height>
+       </size>
+      </property>
+      <property name="text">
+       <string/>
+      </property>
+     </widget>
+    </item>
+    <item row="5" column="1">
+     <widget class="QPushButton" name="btn_number_8">
+      <property name="sizePolicy">
+       <sizepolicy hsizetype="Expanding" vsizetype="Expanding">
+        <horstretch>0</horstretch>
+        <verstretch>0</verstretch>
+       </sizepolicy>
+      </property>
+      <property name="font">
+       <font>
+        <family>Vazirmatn Light</family>
+        <pointsize>48</pointsize>
+       </font>
+      </property>
+      <property name="styleSheet">
+       <string notr="true">background-color: rgb(232, 232, 232);</string>
+      </property>
+      <property name="text">
+       <string/>
+      </property>
+     </widget>
+    </item>
+    <item row="4" column="2">
+     <widget class="QPushButton" name="btn_number_6">
+      <property name="sizePolicy">
+       <sizepolicy hsizetype="Expanding" vsizetype="Expanding">
+        <horstretch>0</horstretch>
+        <verstretch>0</verstretch>
+       </sizepolicy>
+      </property>
+      <property name="font">
+       <font>
+        <family>Vazirmatn Light</family>
+        <pointsize>48</pointsize>
+       </font>
+      </property>
+      <property name="styleSheet">
+       <string notr="true">background-color: rgb(232, 232, 232);</string>
+      </property>
+      <property name="text">
+       <string/>
+      </property>
+     </widget>
+    </item>
+    <item row="3" column="1">
+     <widget class="QPushButton" name="btn_number_2">
+      <property name="sizePolicy">
+       <sizepolicy hsizetype="Expanding" vsizetype="Expanding">
+        <horstretch>0</horstretch>
+        <verstretch>0</verstretch>
+       </sizepolicy>
+      </property>
+      <property name="font">
+       <font>
+        <family>Vazirmatn Light</family>
+        <pointsize>48</pointsize>
+       </font>
+      </property>
+      <property name="styleSheet">
+       <string notr="true">background-color: rgb(232, 232, 232);</string>
+      </property>
+      <property name="text">
+       <string/>
+      </property>
+     </widget>
+    </item>
+    <item row="4" column="0">
+     <widget class="QPushButton" name="btn_number_4">
+      <property name="sizePolicy">
+       <sizepolicy hsizetype="Expanding" vsizetype="Expanding">
+        <horstretch>0</horstretch>
+        <verstretch>0</verstretch>
+       </sizepolicy>
+      </property>
+      <property name="font">
+       <font>
+        <family>Vazirmatn Light</family>
+        <pointsize>48</pointsize>
+       </font>
+      </property>
+      <property name="styleSheet">
+       <string notr="true">background-color: rgb(232, 232, 232);</string>
+      </property>
+      <property name="text">
+       <string/>
+      </property>
+     </widget>
+    </item>
+    <item row="6" column="2">
+     <widget class="QPushButton" name="btn_player2_score">
+      <property name="sizePolicy">
+       <sizepolicy hsizetype="Expanding" vsizetype="Expanding">
+        <horstretch>0</horstretch>
+        <verstretch>1</verstretch>
+       </sizepolicy>
+      </property>
+      <property name="maximumSize">
+       <size>
+        <width>16777215</width>
+        <height>60</height>
+       </size>
       </property>
       <property name="text">
        <string/>

@@ -5,13 +5,13 @@ from functools import partial
 class Game:
     def __init__(self):
         self.turn_player = 1
-        self.message_box = None
+        self.move = 1
+        self.message_box = QMessageBox()
         self.buttons = [[main_window.btn_number_1, main_window.btn_number_2, main_window.btn_number_3],
                         [main_window.btn_number_4, main_window.btn_number_5, main_window.btn_number_6],
                         [main_window.btn_number_7, main_window.btn_number_8, main_window.btn_number_9]]
 
     def show_message(self):
-        self.message_box = QMessageBox()
         self.message_box.setWindowTitle("Congratulations")
         self.message_box.setText(f"Player {self.turn_player} wins")
         self.message_box.exec()
@@ -24,31 +24,40 @@ class Game:
             self.buttons[row][column].setText("O")
             self.turn_player = 1
         self.check_winner()
+        self.move += 1
 
     def check_winner(self):
         for row in range(3):
             if self.buttons[row][0].text() == self.buttons[row][1].text() == self.buttons[row][2].text() != "":
                 if self.buttons[row][0].text() == "X":
                     self.show_message()
+                    return
                 else:
                     self.show_message()
+                    return
             if self.buttons[0][row].text() == self.buttons[1][row].text() == self.buttons[2][row].text() != "":
                 if self.buttons[0][row].text() == "X":
                     self.show_message()
+                    return
                 else:
                     self.show_message()
+                    return
         if self.buttons[0][0].text() == self.buttons[1][1].text() == self.buttons[2][2].text() == "X":
             self.show_message()
+            return
         if self.buttons[0][2].text() == self.buttons[1][1].text() == self.buttons[2][0].text() == "X":
             self.show_message()
+            return
         if self.buttons[0][0].text() == self.buttons[1][1].text() == self.buttons[2][2].text() == "O":
             self.show_message()
+            return
         if self.buttons[0][2].text() == self.buttons[1][1].text() == self.buttons[2][0].text() == "O":  
             self.show_message()
-        for row in range(3):
-            for column in range(3):
-                #if self.buttons[row][column].text() != "":
-                    ...
+            return
+        elif self.move == 9:
+            self.message_box.setWindowTitle("Congratulations")
+            self.message_box.setText("All of Player win!")
+            self.message_box.exec()
 
 loader = QUiLoader()
 app = QApplication([])
