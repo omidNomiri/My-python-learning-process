@@ -66,7 +66,7 @@ class Game:
                 self.main_window.btn_turn_X.setStyleSheet("color:White")
             if self.turn_player == 2:
                 while True:
-                    row = randint(0, 2)
+                    row_p = randint(0, 2)
                     column = randint(0, 2)
 
                     if self.buttons[row][column].text() == "":
