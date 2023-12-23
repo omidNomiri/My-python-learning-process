@@ -1,4 +1,5 @@
 from random import randint
+from time import sleep
 from PySide6.QtWidgets import QApplication, QMessageBox
 from PySide6.QtUiTools import QUiLoader
 from functools import partial
@@ -57,6 +58,8 @@ class Game:
                 self.turn_player = 1
                 self.main_window.btn_turn_O.setStyleSheet("color:White")
                 self.main_window.btn_turn_X.setStyleSheet("color:Blue")
+            self.check_winner()
+
         elif self.mode == "PvC":
             if self.turn_player == 1:
                 self.buttons[row][column].setText("X")
@@ -64,9 +67,9 @@ class Game:
                 self.turn_player = 2
                 self.main_window.btn_turn_O.setStyleSheet("color:Red")
                 self.main_window.btn_turn_X.setStyleSheet("color:White")
-            if self.turn_player == 2:
+            elif self.turn_player == 2:
                 while True:
-                    row_p = randint(0, 2)
+                    row = randint(0, 2)
                     column = randint(0, 2)
 
                     if self.buttons[row][column].text() == "":
@@ -75,12 +78,14 @@ class Game:
                         self.turn_player = 1
                         self.main_window.btn_turn_O.setStyleSheet("color:White")
                         self.main_window.btn_turn_X.setStyleSheet("color:Blue")
+                        break
+                self.check_winner()
+
         else:
             self.message_box.setWindowTitle("Error Game mode")
             self.message_box.setText("Please select Game mode!")
             self.message_box.exec()
 
-        self.check_winner()
         self.move += 1
 
     def check_winner(self):
