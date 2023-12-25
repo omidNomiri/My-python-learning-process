@@ -1,5 +1,4 @@
 from random import randint
-from time import sleep
 from PySide6.QtWidgets import QApplication, QMessageBox
 from PySide6.QtUiTools import QUiLoader
 from functools import partial
@@ -36,6 +35,7 @@ class Game:
         self.main_window.btn_player1_score.setText(f"player 1 score: {self.player1_score}")
         self.main_window.btn_player2_score.setText(f"player 2 score: {self.player2_score}")
         self.main_window.btn_equal.setText(f"equal: {self.equal_score} time")
+        self.move = 0
         for row in range(3):
             for column in range(3):
                 self.buttons[row][column].setText("")
@@ -71,7 +71,6 @@ class Game:
                 while True:
                     row = randint(0, 2)
                     column = randint(0, 2)
-
                     if self.buttons[row][column].text() == "":
                         self.buttons[row][column].setText("O")
                         self.buttons[row][column].setStyleSheet("color:Red")
@@ -138,6 +137,12 @@ class Game:
             self.message_box.setText("All of Player win!")
             self.message_box.exec()
             self.refresh_game()
+            return
+        
+    def about(self):
+        self.message_box.setWindowTitle("About")
+        self.message_box.setText("The Tic-Tac-Toe game you've implemented is a two-player game with two modes: Player vs. Player (PvP) and Player vs. Computer (PvC). The players take turns marking 'X' or 'O' on a 3x3 grid. The goal is to achieve a row, column, or diagonal of three of their marks before the opponent.")
+        self.message_box.exec()
 
 loader = QUiLoader()
 app = QApplication([])
@@ -156,6 +161,7 @@ for i in range(3):
         game.buttons[i][j].clicked.connect(partial(game.play, i, j))
 
 game.main_window.btn_reload.clicked.connect(game.reload_game)
+game.main_window.btn_about.clicked.connect(game.about)
 
 game.main_window.show()
 
