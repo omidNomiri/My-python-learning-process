@@ -2,12 +2,13 @@ from numbers import Number
 import sys
 from functools import partial
 from random import randint
-from PySide6.QtWidgets import QApplication, QMainWindow
+from PySide6.QtWidgets import QApplication, QMainWindow,QMessageBox
 from ui_main_window import Ui_MainWindow
 
 class Game(QMainWindow):
     def __init__(self):
         super().__init__()
+        self.message_box = QMessageBox()
         self.ui = Ui_MainWindow()
         self.ui.setupUi(self)
         self.unique_list = []
@@ -47,6 +48,19 @@ class Game(QMainWindow):
             self.buttons[i][j].setVisible(False)
             self.empty_i = i
             self.empty_j = j
+
+    def check_winner(self):
+        num = 1
+        block_set = 0
+        for i in range(4):
+            for j in range(4):
+                if self.buttons[i][j].text() == str(num):
+                    block_set += 1
+                num += 1
+        if block_set == 15:
+            self.message_box.setWindowTitle("Congratulations")
+            self.message_box.setText("You Win")
+            self.message_box.exec()
 
 if __name__ == "__main__":
     app = QApplication(sys.argv)
