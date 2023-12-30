@@ -1,4 +1,3 @@
-from numbers import Number
 import sys
 from functools import partial
 from random import randint
