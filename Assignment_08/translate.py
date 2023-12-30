@@ -56,7 +56,7 @@ def persian_text_to_speak():
 def add_to_database():
     user_english_text = input("Please enter your English text: ")
     user_persian_text = input("Please enter your Persian text: ")
-    with open("Assignment_8\Translate.txt", "a") as database:
+    with open("Assignment_8/Translate.txt", "a") as database:
         database.write(f"{user_english_text}\n{user_persian_text}\n")
 
 load_database()
