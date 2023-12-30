@@ -16,16 +16,16 @@ class Translator(QMainWindow):
           self.message_box = QMessageBox()
           self.ui = Ui_MainWindow()
           self.ui.setupUi(self)
+          self.mode = ""
 
      def choice_mode(self, mode_translate):
           self.mode = mode_translate
 
      def translate(self):
-          if not self.mode:
-               self.message_box.setWindowTitle("Error")
-               self.message_box.setText("Please select your translate language.")
-               self.message_box.exec()
-               return
+          if window.mode == "":
+               window.message_box.setWindowTitle("Error")
+               window.message_box.setText("Please select your translate language.")
+               window.message_box.exec()
           elif self.mode == "Persian to English":
                input_text = self.ui.input_text.text()
                input_words = input_text.split(" ")

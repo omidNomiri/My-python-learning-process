@@ -35,21 +35,17 @@ class Ui_MainWindow(object):
         self.gridLayout.setObjectName(u"gridLayout")
         self.output_text = QLineEdit(self.centralwidget)
         self.output_text.setObjectName(u"output_text")
-        sizePolicy.setHeightForWidth(self.output_text.sizePolicy().hasHeightForWidth())
-        self.output_text.setSizePolicy(sizePolicy)
+        sizePolicy1 = QSizePolicy(QSizePolicy.Expanding, QSizePolicy.Preferred)
+        sizePolicy1.setHorizontalStretch(0)
+        sizePolicy1.setVerticalStretch(0)
+        sizePolicy1.setHeightForWidth(self.output_text.sizePolicy().hasHeightForWidth())
+        self.output_text.setSizePolicy(sizePolicy1)
         self.output_text.setStyleSheet(u"background-color: rgb(194, 194, 194);\n"
 "border: 2px solid white;\n"
 "border-radius: 15px;")
+        self.output_text.setReadOnly(True)
 
         self.gridLayout.addWidget(self.output_text, 6, 0, 1, 2)
-
-        self.btn_speak_output = QPushButton(self.centralwidget)
-        self.btn_speak_output.setObjectName(u"btn_speak_output")
-        self.btn_speak_output.setStyleSheet(u"background-color: rgb(135, 135, 135);\n"
-"border: 2px solid black;\n"
-"border-radius: 10px;")
-
-        self.gridLayout.addWidget(self.btn_speak_output, 5, 1, 1, 1)
 
         self.rdbtn_en_pr = QRadioButton(self.centralwidget)
         self.rdbtn_en_pr.setObjectName(u"rdbtn_en_pr")
@@ -67,36 +63,29 @@ class Ui_MainWindow(object):
 
         self.gridLayout.addWidget(self.rdbtn_pr_en, 2, 1, 1, 1)
 
-        self.btn_speak_input = QPushButton(self.centralwidget)
-        self.btn_speak_input.setObjectName(u"btn_speak_input")
-        self.btn_speak_input.setStyleSheet(u"background-color: rgb(135, 135, 135);\n"
-"border: 2px solid black;\n"
-"border-radius: 10px;")
+        self.input_text = QLineEdit(self.centralwidget)
+        self.input_text.setObjectName(u"input_text")
+        sizePolicy1.setHeightForWidth(self.input_text.sizePolicy().hasHeightForWidth())
+        self.input_text.setSizePolicy(sizePolicy1)
+        self.input_text.setStyleSheet(u"background-color: rgb(194, 194, 194);\n"
+"border: 2px solid white;\n"
+"border-radius: 15px;")
+        self.input_text.setAlignment(Qt.AlignHCenter|Qt.AlignTop)
 
-        self.gridLayout.addWidget(self.btn_speak_input, 4, 1, 1, 1)
+        self.gridLayout.addWidget(self.input_text, 3, 0, 1, 2)
 
         self.btn_translate = QPushButton(self.centralwidget)
         self.btn_translate.setObjectName(u"btn_translate")
-        sizePolicy1 = QSizePolicy(QSizePolicy.Minimum, QSizePolicy.Expanding)
-        sizePolicy1.setHorizontalStretch(0)
-        sizePolicy1.setVerticalStretch(0)
-        sizePolicy1.setHeightForWidth(self.btn_translate.sizePolicy().hasHeightForWidth())
-        self.btn_translate.setSizePolicy(sizePolicy1)
+        sizePolicy2 = QSizePolicy(QSizePolicy.Minimum, QSizePolicy.Maximum)
+        sizePolicy2.setHorizontalStretch(0)
+        sizePolicy2.setVerticalStretch(0)
+        sizePolicy2.setHeightForWidth(self.btn_translate.sizePolicy().hasHeightForWidth())
+        self.btn_translate.setSizePolicy(sizePolicy2)
         self.btn_translate.setStyleSheet(u"background-color: rgb(135, 135, 135);\n"
 "border: 2px solid black;\n"
 "border-radius: 15px;")
 
-        self.gridLayout.addWidget(self.btn_translate, 4, 0, 2, 1)
-
-        self.input_text = QLineEdit(self.centralwidget)
-        self.input_text.setObjectName(u"input_text")
-        sizePolicy.setHeightForWidth(self.input_text.sizePolicy().hasHeightForWidth())
-        self.input_text.setSizePolicy(sizePolicy)
-        self.input_text.setStyleSheet(u"background-color: rgb(194, 194, 194);\n"
-"border: 2px solid white;\n"
-"border-radius: 15px;")
-
-        self.gridLayout.addWidget(self.input_text, 3, 0, 1, 2)
+        self.gridLayout.addWidget(self.btn_translate, 4, 0, 1, 2)
 
         MainWindow.setCentralWidget(self.centralwidget)
 
@@ -107,11 +96,9 @@ class Ui_MainWindow(object):
 
     def retranslateUi(self, MainWindow):
         MainWindow.setWindowTitle(QCoreApplication.translate("MainWindow", u"MainWindow", None))
-        self.btn_speak_output.setText(QCoreApplication.translate("MainWindow", u"Speak english", None))
         self.rdbtn_en_pr.setText(QCoreApplication.translate("MainWindow", u"English to Persian", None))
         self.rdbtn_pr_en.setText(QCoreApplication.translate("MainWindow", u"Persian to English", None))
-        self.btn_speak_input.setText(QCoreApplication.translate("MainWindow", u"Speak persian", None))
-        self.btn_translate.setText(QCoreApplication.translate("MainWindow", u"Translate", None))
         self.input_text.setText("")
+        self.btn_translate.setText(QCoreApplication.translate("MainWindow", u"Translate", None))
     # retranslateUi
 
