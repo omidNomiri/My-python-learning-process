@@ -39,7 +39,7 @@ class Generator(QMainWindow):
           self.ui.password_output.setText(str(self.password))
 
           window.message_box.setWindowTitle("Completed")
-          window.message_box.setText("five password generate for you.")
+          window.message_box.setText("password generate for you.")
           window.message_box.exec()
 
 if __name__ == "__main__":
