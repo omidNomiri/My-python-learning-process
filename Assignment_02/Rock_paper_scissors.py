@@ -13,7 +13,6 @@ while True:
     print("You chose:", user_choice)
     print("Computer chose:", computer_choice)
 
-    # Check for winner
     if user_choice == computer_choice:
         print("There are equal!")
     
