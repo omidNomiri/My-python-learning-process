@@ -9,22 +9,34 @@ class Game(QMainWindow):
           self.message_box = QMessageBox()
           self.ui = Ui_MainWindow()
           self.ui.setupUi(self)
-          self.movement_of_pc = ["🎱", "📄", "✂"]
+          self.list_of_pc_movement = ["🎱", "📄", "✂"]
+          self.pc_movement = None
 
      def pc_move(self):
-          pc_movement = choice(self.movement_of_pc)
-          self.ui.btn_pc.setText(str(pc_movement))
+          self.pc_movement = choice(self.list_of_pc_movement)
+          self.ui.btn_pc.setText(str(self.pc_movement))
 
-     def player_move(self, movement):
-          if movement == "stone":
+     def player_move(self, player_movement):
+          if player_movement == "stone":
                self.ui.btn_pc.setText("🎱")
-          elif movement == "paper":
+          elif player_movement == "paper":
                self.ui.btn_pc.setText("📄")
-          elif movement == "scissors":
+          elif player_movement == "scissors":
                self.ui.btn_pc.setText("✂")
+          self.pc_move()
+          self.check_winner()
 
      def check_winner(self):
-          ...
+          if self.ui.btn_player.text() == self.ui.btn_pc.text():
+               window.ui.result_text.setText("Game result: Equal")
+
+          elif (self.ui.btn_player.text() == "🎱" and self.ui.btn_pc.text() == "✂") or \
+               (self.ui.btn_player.text() == "📄" and self.ui.btn_pc.text() == "🎱") or \
+               (self.ui.btn_player.text() == "✂" and self.ui.btn_pc.text() == "📄"):
+               window.ui.result_text.setText("Game result: Player Win!")
+
+          else:
+               window.ui.result_text.setText("Game result: PC Win!")
 
 if __name__ == "__main__":
      app = QApplication(sys.argv)

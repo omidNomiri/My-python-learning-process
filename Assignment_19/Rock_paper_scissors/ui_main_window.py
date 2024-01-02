@@ -23,6 +23,7 @@ class Ui_MainWindow(object):
         if not MainWindow.objectName():
             MainWindow.setObjectName(u"MainWindow")
         MainWindow.resize(606, 655)
+        MainWindow.setStyleSheet(u"background-color: rgb(65, 65, 65);")
         self.centralwidget = QWidget(MainWindow)
         self.centralwidget.setObjectName(u"centralwidget")
         self.gridLayout = QGridLayout(self.centralwidget)
@@ -34,47 +35,42 @@ class Ui_MainWindow(object):
         sizePolicy.setVerticalStretch(0)
         sizePolicy.setHeightForWidth(self.btn_pc.sizePolicy().hasHeightForWidth())
         self.btn_pc.setSizePolicy(sizePolicy)
+        self.btn_pc.setStyleSheet(u"border: 2px solid black;\n"
+"border-radius: 25px;\n"
+"background-color: rgb(131, 131, 131);")
 
         self.gridLayout.addWidget(self.btn_pc, 0, 1, 1, 1)
-
-        self.result_text = QLabel(self.centralwidget)
-        self.result_text.setObjectName(u"result_text")
-        sizePolicy1 = QSizePolicy(QSizePolicy.Expanding, QSizePolicy.Fixed)
-        sizePolicy1.setHorizontalStretch(0)
-        sizePolicy1.setVerticalStretch(0)
-        sizePolicy1.setHeightForWidth(self.result_text.sizePolicy().hasHeightForWidth())
-        self.result_text.setSizePolicy(sizePolicy1)
-        font = QFont()
-        font.setPointSize(16)
-        self.result_text.setFont(font)
-        self.result_text.setAlignment(Qt.AlignCenter)
-
-        self.gridLayout.addWidget(self.result_text, 1, 0, 1, 3)
 
         self.btn_player = QPushButton(self.centralwidget)
         self.btn_player.setObjectName(u"btn_player")
         sizePolicy.setHeightForWidth(self.btn_player.sizePolicy().hasHeightForWidth())
         self.btn_player.setSizePolicy(sizePolicy)
+        self.btn_player.setStyleSheet(u"border: 2px solid black;\n"
+"border-radius: 25px;\n"
+"background-color: rgb(131, 131, 131);")
 
         self.gridLayout.addWidget(self.btn_player, 2, 1, 1, 1)
 
         self.btn_stone = QPushButton(self.centralwidget)
         self.btn_stone.setObjectName(u"btn_stone")
         self.btn_stone.setEnabled(True)
-        sizePolicy2 = QSizePolicy(QSizePolicy.Expanding, QSizePolicy.Expanding)
-        sizePolicy2.setHorizontalStretch(0)
-        sizePolicy2.setVerticalStretch(0)
-        sizePolicy2.setHeightForWidth(self.btn_stone.sizePolicy().hasHeightForWidth())
-        self.btn_stone.setSizePolicy(sizePolicy2)
-        font1 = QFont()
-        font1.setPointSize(45)
-        font1.setWeight(QFont.ExtraLight)
-        font1.setItalic(False)
-        font1.setUnderline(False)
-        font1.setStrikeOut(False)
-        font1.setStyleStrategy(QFont.PreferDefault)
-        font1.setHintingPreference(QFont.PreferDefaultHinting)
-        self.btn_stone.setFont(font1)
+        sizePolicy1 = QSizePolicy(QSizePolicy.Expanding, QSizePolicy.Expanding)
+        sizePolicy1.setHorizontalStretch(0)
+        sizePolicy1.setVerticalStretch(0)
+        sizePolicy1.setHeightForWidth(self.btn_stone.sizePolicy().hasHeightForWidth())
+        self.btn_stone.setSizePolicy(sizePolicy1)
+        font = QFont()
+        font.setPointSize(45)
+        font.setWeight(QFont.ExtraLight)
+        font.setItalic(False)
+        font.setUnderline(False)
+        font.setStrikeOut(False)
+        font.setStyleStrategy(QFont.PreferDefault)
+        font.setHintingPreference(QFont.PreferDefaultHinting)
+        self.btn_stone.setFont(font)
+        self.btn_stone.setStyleSheet(u"border: 2px solid black;\n"
+"border-radius: 25px;\n"
+"background-color: rgb(131, 131, 131);")
         self.btn_stone.setText(u"\ud83c\udfb1")
         self.btn_stone.setIconSize(QSize(180, 180))
         self.btn_stone.setFlat(False)
@@ -83,24 +79,48 @@ class Ui_MainWindow(object):
 
         self.btn_scissors = QPushButton(self.centralwidget)
         self.btn_scissors.setObjectName(u"btn_scissors")
-        sizePolicy2.setHeightForWidth(self.btn_scissors.sizePolicy().hasHeightForWidth())
-        self.btn_scissors.setSizePolicy(sizePolicy2)
-        font2 = QFont()
-        font2.setPointSize(45)
-        font2.setKerning(True)
-        self.btn_scissors.setFont(font2)
+        sizePolicy1.setHeightForWidth(self.btn_scissors.sizePolicy().hasHeightForWidth())
+        self.btn_scissors.setSizePolicy(sizePolicy1)
+        font1 = QFont()
+        font1.setPointSize(45)
+        font1.setKerning(True)
+        self.btn_scissors.setFont(font1)
+        self.btn_scissors.setStyleSheet(u"border: 2px solid black;\n"
+"border-radius: 25px;\n"
+"background-color: rgb(131, 131, 131);")
         self.btn_scissors.setIconSize(QSize(180, 180))
 
         self.gridLayout.addWidget(self.btn_scissors, 4, 2, 1, 1)
 
         self.btn_paper = QPushButton(self.centralwidget)
         self.btn_paper.setObjectName(u"btn_paper")
-        sizePolicy2.setHeightForWidth(self.btn_paper.sizePolicy().hasHeightForWidth())
-        self.btn_paper.setSizePolicy(sizePolicy2)
-        self.btn_paper.setFont(font2)
+        sizePolicy1.setHeightForWidth(self.btn_paper.sizePolicy().hasHeightForWidth())
+        self.btn_paper.setSizePolicy(sizePolicy1)
+        self.btn_paper.setFont(font1)
+        self.btn_paper.setStyleSheet(u"border: 2px solid black;\n"
+"border-radius: 25px;\n"
+"background-color: rgb(131, 131, 131);")
         self.btn_paper.setIconSize(QSize(180, 180))
 
         self.gridLayout.addWidget(self.btn_paper, 4, 1, 1, 1)
+
+        self.result_text = QLabel(self.centralwidget)
+        self.result_text.setObjectName(u"result_text")
+        sizePolicy2 = QSizePolicy(QSizePolicy.Expanding, QSizePolicy.Fixed)
+        sizePolicy2.setHorizontalStretch(0)
+        sizePolicy2.setVerticalStretch(0)
+        sizePolicy2.setHeightForWidth(self.result_text.sizePolicy().hasHeightForWidth())
+        self.result_text.setSizePolicy(sizePolicy2)
+        font2 = QFont()
+        font2.setPointSize(12)
+        self.result_text.setFont(font2)
+        self.result_text.setStyleSheet(u"border: 2px solid black;\n"
+"border-radius: 10px;\n"
+"background-color: rgb(131, 131, 131);\n"
+"color: rgb(255, 255, 255);")
+        self.result_text.setAlignment(Qt.AlignCenter)
+
+        self.gridLayout.addWidget(self.result_text, 1, 1, 1, 1)
 
         MainWindow.setCentralWidget(self.centralwidget)
 
@@ -112,9 +132,9 @@ class Ui_MainWindow(object):
     def retranslateUi(self, MainWindow):
         MainWindow.setWindowTitle(QCoreApplication.translate("MainWindow", u"MainWindow", None))
         self.btn_pc.setText("")
-        self.result_text.setText(QCoreApplication.translate("MainWindow", u"Game result:", None))
         self.btn_player.setText("")
         self.btn_scissors.setText(QCoreApplication.translate("MainWindow", u"\u2702", None))
         self.btn_paper.setText(QCoreApplication.translate("MainWindow", u"\ud83d\udcc4", None))
+        self.result_text.setText(QCoreApplication.translate("MainWindow", u"Game result: Result", None))
     # retranslateUi
 

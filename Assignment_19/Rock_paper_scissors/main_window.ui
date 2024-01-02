@@ -13,6 +13,9 @@
   <property name="windowTitle">
    <string>MainWindow</string>
   </property>
+  <property name="styleSheet">
+   <string notr="true">background-color: rgb(65, 65, 65);</string>
+  </property>
   <widget class="QWidget" name="centralwidget">
    <layout class="QGridLayout" name="gridLayout">
     <item row="0" column="1">
@@ -23,29 +26,13 @@
         <verstretch>0</verstretch>
        </sizepolicy>
       </property>
+      <property name="styleSheet">
+       <string notr="true">border: 2px solid black;
+border-radius: 25px;
+background-color: rgb(131, 131, 131);</string>
+      </property>
       <property name="text">
        <string/>
-      </property>
-     </widget>
-    </item>
-    <item row="1" column="0" colspan="3">
-     <widget class="QLabel" name="result_text">
-      <property name="sizePolicy">
-       <sizepolicy hsizetype="Expanding" vsizetype="Fixed">
-        <horstretch>0</horstretch>
-        <verstretch>0</verstretch>
-       </sizepolicy>
-      </property>
-      <property name="font">
-       <font>
-        <pointsize>16</pointsize>
-       </font>
-      </property>
-      <property name="text">
-       <string>Game result:</string>
-      </property>
-      <property name="alignment">
-       <set>Qt::AlignCenter</set>
       </property>
      </widget>
     </item>
@@ -56,6 +43,11 @@
         <horstretch>0</horstretch>
         <verstretch>0</verstretch>
        </sizepolicy>
+      </property>
+      <property name="styleSheet">
+       <string notr="true">border: 2px solid black;
+border-radius: 25px;
+background-color: rgb(131, 131, 131);</string>
       </property>
       <property name="text">
        <string/>
@@ -83,6 +75,11 @@
         <hintingpreference>PreferDefaultHinting</hintingpreference>
         <fontweight>ExtraLight</fontweight>
        </font>
+      </property>
+      <property name="styleSheet">
+       <string notr="true">border: 2px solid black;
+border-radius: 25px;
+background-color: rgb(131, 131, 131);</string>
       </property>
       <property name="text">
        <string notr="true">🎱</string>
@@ -112,6 +109,11 @@
         <kerning>true</kerning>
        </font>
       </property>
+      <property name="styleSheet">
+       <string notr="true">border: 2px solid black;
+border-radius: 25px;
+background-color: rgb(131, 131, 131);</string>
+      </property>
       <property name="text">
        <string>✂</string>
       </property>
@@ -137,6 +139,11 @@
         <kerning>true</kerning>
        </font>
       </property>
+      <property name="styleSheet">
+       <string notr="true">border: 2px solid black;
+border-radius: 25px;
+background-color: rgb(131, 131, 131);</string>
+      </property>
       <property name="text">
        <string>📄</string>
       </property>
@@ -145,6 +152,33 @@
         <width>180</width>
         <height>180</height>
        </size>
+      </property>
+     </widget>
+    </item>
+    <item row="1" column="1">
+     <widget class="QLabel" name="result_text">
+      <property name="sizePolicy">
+       <sizepolicy hsizetype="Expanding" vsizetype="Fixed">
+        <horstretch>0</horstretch>
+        <verstretch>0</verstretch>
+       </sizepolicy>
+      </property>
+      <property name="font">
+       <font>
+        <pointsize>12</pointsize>
+       </font>
+      </property>
+      <property name="styleSheet">
+       <string notr="true">border: 2px solid black;
+border-radius: 10px;
+background-color: rgb(131, 131, 131);
+color: rgb(255, 255, 255);</string>
+      </property>
+      <property name="text">
+       <string>Game result: Result</string>
+      </property>
+      <property name="alignment">
+       <set>Qt::AlignCenter</set>
       </property>
      </widget>
     </item>
