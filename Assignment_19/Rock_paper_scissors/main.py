@@ -1,5 +1,6 @@
 import sys
 from random import choice
+from functools import partial
 from PySide6.QtWidgets import QApplication, QMainWindow, QMessageBox
 from ui_main_window import Ui_MainWindow
 
@@ -42,9 +43,9 @@ if __name__ == "__main__":
      app = QApplication(sys.argv)
      window = Game()
 
-     window.ui.btn_stone.clicked.connect(window.player_move("stone"))
-     window.ui.btn_paper.clicked.connect(window.player_move("paper"))
-     window.ui.btn_scissors.clicked.connect(window.player_move("scissors"))
+     window.ui.btn_stone.clicked.connect(partial(window.player_move, "stone"))
+     window.ui.btn_paper.clicked.connect(partial(window.player_move, "paper"))
+     window.ui.btn_scissors.clicked.connect(partial(window.player_move, "scissors"))
 
      window.show()
      app.exec()

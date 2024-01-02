@@ -22,8 +22,13 @@ class Ui_MainWindow(object):
     def setupUi(self, MainWindow):
         if not MainWindow.objectName():
             MainWindow.setObjectName(u"MainWindow")
+        MainWindow.setEnabled(True)
         MainWindow.resize(606, 655)
         MainWindow.setStyleSheet(u"background-color: rgb(65, 65, 65);")
+        MainWindow.setToolButtonStyle(Qt.ToolButtonFollowStyle)
+        MainWindow.setAnimated(False)
+        MainWindow.setDockNestingEnabled(False)
+        MainWindow.setUnifiedTitleAndToolBarOnMac(False)
         self.centralwidget = QWidget(MainWindow)
         self.centralwidget.setObjectName(u"centralwidget")
         self.gridLayout = QGridLayout(self.centralwidget)
