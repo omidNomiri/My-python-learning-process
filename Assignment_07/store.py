@@ -4,7 +4,7 @@ PRODUCTS = []
 factor = []
 
 def read_database():
-    with open("Assignment_7\database.txt", "r") as database:
+    with open("Assignment_07\database.txt", "r") as database:
         for line in database:
             line = line.strip()
             product_list = line.split(",")
@@ -110,7 +110,7 @@ def buy():
             break
 
 def save_in_database():
-    with open("Assignment_7\database.txt","w") as database:
+    with open("Assignment_07\database.txt","w") as database:
         for row in PRODUCTS:
             code = row["code"]
             name = row["name"]
