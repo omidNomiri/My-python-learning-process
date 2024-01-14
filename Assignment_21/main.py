@@ -5,6 +5,7 @@ class Store:
           self.data_base = sqlite3.connect("Assignment_21\store_database.db")
           self.curser = self.data_base.cursor()
           self.show_action_list = "WELCOME TO STORE\n 1. ADD item \n 2. EDIT item \n 3. Remove \n 4. Search \n 5. Show list of item \n 6. Buy \n 7. Exit"
+          self.factor = []
 
      def add_item(self):
           product_name = str(input("name of item: "))
@@ -20,11 +21,11 @@ class Store:
           if edit_target in (1,2,3):
                new_value = input("please enter your new value: ")
                if edit_target == 1:
-                    self.curser.execute("UPDATE Products SET name=? where id=?",(new_value, target_item_id))
+                    self.curser.execute("UPDATE Products SET name=? Where id=?",(new_value, target_item_id))
                elif edit_target == 2:
-                    self.curser.execute("UPDATE Products SET price=? where id=?", (new_value, target_item_id))
+                    self.curser.execute("UPDATE Products SET price=? Where id=?", (new_value, target_item_id))
                elif edit_target == 3:
-                    self.curser.execute("UPDATE Products SET storage=? where id=?", (new_value, target_item_id))
+                    self.curser.execute("UPDATE Products SET storage=? Where id=?", (new_value, target_item_id))
                self.data_base.commit()
 
      def remove_item(self):
@@ -45,7 +46,21 @@ class Store:
                print(f"ID: {item[0]}, Name: {item[1]}, Price: {item[2]}, Storage: {item[3]}")
 
      def buy(self):
-          ...
+          while True:
+               self.show_item_list()
+               item_customer_want = input("Please enter your product name or product id: ")
+               how_many_item = int(input("How many: "))
+               self.curser.execute("UPDATE Products SET storage= storage - ? WHERE id=? OR name=?", (how_many_item, item_customer_want, item_customer_want))
+               item = self.curser.execute("SELECT * FROM Products WHERE id=? OR name=?", (item_customer_want, item_customer_want)).fetchall()
+               item = item[0]
+               list_for_factor = [str(value) for value in item]
+               self.factor.append(list_for_factor)
+               self.data_base.commit()
+               continue_shopping = input("Do you want to continue shopping? (y/n): ")
+               if continue_shopping.lower() != "y":
+                    for item in self.factor:
+                         print(item)
+                    break
 
 app = Store()
 
