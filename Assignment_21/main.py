@@ -28,10 +28,16 @@ class Store:
                self.data_base.commit()
 
      def remove_item(self):
-          ...
+          self.show_item_list()
+          target_item_id = input("please enter your product id: ")
+          self.curser.execute("DELETE FROM Products WHERE id=?", (target_item_id))
+          self.data_base.commit()
 
      def search_item(self):
-          ...
+          target_item_id = input("Please enter your product name or product id: ")
+          items = self.curser.execute("SELECT * FROM Products WHERE id=? OR name=?", (target_item_id,target_item_id)).fetchall()
+          for item in items:
+               print(f"ID: {item[0]}, Name: {item[1]}, Price: {item[2]}, Storage: {item[3]}")
 
      def show_item_list(self):
           items = self.curser.execute("SELECT * FROM Products").fetchall()
