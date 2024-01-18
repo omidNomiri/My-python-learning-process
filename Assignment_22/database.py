@@ -11,4 +11,7 @@ class Database:
           return result
 
      def add_new_task(self, new_task_title, new_task_description):
-          ...
+          query = f"INSERT INTO tb_tasks(title, description) VALUES ('{new_task_title}','{new_task_description}')"
+          self.curser.execute(query)
+          self.connection.commit()
+          return True
