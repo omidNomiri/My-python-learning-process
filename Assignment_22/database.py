@@ -15,3 +15,9 @@ class Database:
           self.curser.execute(query)
           self.connection.commit()
           return True
+
+     def remove_task(self, task_id):
+          query = f"DELETE FROM tb_tasks WHERE id={task_id}"
+          self.curser.execute(query)
+          self.connection.commit()
+          return True

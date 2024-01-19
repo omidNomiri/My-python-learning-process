@@ -15,7 +15,7 @@ from PySide6.QtGui import (QBrush, QColor, QConicalGradient, QCursor,
     QFont, QFontDatabase, QGradient, QIcon,
     QImage, QKeySequence, QLinearGradient, QPainter,
     QPalette, QPixmap, QRadialGradient, QTransform)
-from PySide6.QtWidgets import (QApplication, QFormLayout, QLabel, QLineEdit,
+from PySide6.QtWidgets import (QApplication, QGridLayout, QLabel, QLineEdit,
     QMainWindow, QPushButton, QSizePolicy, QTextEdit,
     QWidget)
 
@@ -26,13 +26,6 @@ class Ui_MainWindow(object):
         MainWindow.resize(1013, 597)
         self.centralwidget = QWidget(MainWindow)
         self.centralwidget.setObjectName(u"centralwidget")
-        self.verticalLayoutWidget = QWidget(self.centralwidget)
-        self.verticalLayoutWidget.setObjectName(u"verticalLayoutWidget")
-        self.verticalLayoutWidget.setGeometry(QRect(10, 10, 641, 581))
-        self.form_Layout = QFormLayout(self.verticalLayoutWidget)
-        self.form_Layout.setObjectName(u"form_Layout")
-        self.form_Layout.setVerticalSpacing(10)
-        self.form_Layout.setContentsMargins(25, 25, 25, 25)
         self.btn_add_task = QPushButton(self.centralwidget)
         self.btn_add_task.setObjectName(u"btn_add_task")
         self.btn_add_task.setGeometry(QRect(910, 40, 91, 31))
@@ -50,6 +43,14 @@ class Ui_MainWindow(object):
         self.title_text = QLineEdit(self.centralwidget)
         self.title_text.setObjectName(u"title_text")
         self.title_text.setGeometry(QRect(660, 30, 241, 21))
+        self.gridLayoutWidget = QWidget(self.centralwidget)
+        self.gridLayoutWidget.setObjectName(u"gridLayoutWidget")
+        self.gridLayoutWidget.setGeometry(QRect(9, 9, 641, 581))
+        self.grid_Layout = QGridLayout(self.gridLayoutWidget)
+        self.grid_Layout.setObjectName(u"grid_Layout")
+        self.grid_Layout.setHorizontalSpacing(5)
+        self.grid_Layout.setVerticalSpacing(10)
+        self.grid_Layout.setContentsMargins(25, 25, 25, 25)
         MainWindow.setCentralWidget(self.centralwidget)
 
         self.retranslateUi(MainWindow)

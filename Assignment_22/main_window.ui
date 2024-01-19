@@ -14,33 +14,6 @@
    <string>MainWindow</string>
   </property>
   <widget class="QWidget" name="centralwidget">
-   <widget class="QWidget" name="verticalLayoutWidget">
-    <property name="geometry">
-     <rect>
-      <x>10</x>
-      <y>10</y>
-      <width>641</width>
-      <height>581</height>
-     </rect>
-    </property>
-    <layout class="QFormLayout" name="form_Layout">
-     <property name="verticalSpacing">
-      <number>10</number>
-     </property>
-     <property name="leftMargin">
-      <number>25</number>
-     </property>
-     <property name="topMargin">
-      <number>25</number>
-     </property>
-     <property name="rightMargin">
-      <number>25</number>
-     </property>
-     <property name="bottomMargin">
-      <number>25</number>
-     </property>
-    </layout>
-   </widget>
    <widget class="QPushButton" name="btn_add_task">
     <property name="geometry">
      <rect>
@@ -105,6 +78,36 @@
       <height>21</height>
      </rect>
     </property>
+   </widget>
+   <widget class="QWidget" name="gridLayoutWidget">
+    <property name="geometry">
+     <rect>
+      <x>9</x>
+      <y>9</y>
+      <width>641</width>
+      <height>581</height>
+     </rect>
+    </property>
+    <layout class="QGridLayout" name="grid_Layout">
+     <property name="leftMargin">
+      <number>25</number>
+     </property>
+     <property name="topMargin">
+      <number>25</number>
+     </property>
+     <property name="rightMargin">
+      <number>25</number>
+     </property>
+     <property name="bottomMargin">
+      <number>25</number>
+     </property>
+     <property name="horizontalSpacing">
+      <number>5</number>
+     </property>
+     <property name="verticalSpacing">
+      <number>10</number>
+     </property>
+    </layout>
    </widget>
   </widget>
  </widget>
