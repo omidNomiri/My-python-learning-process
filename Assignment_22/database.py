@@ -21,3 +21,12 @@ class Database:
           self.curser.execute(query)
           self.connection.commit()
           return True
+
+     def done_task(self, task_id, is_done):
+          if is_done == 0:
+               query = f"UPDATE tb_tasks SET is_done=1 WHERE id={task_id} AND is_done=0"
+          else:
+               query = f"UPDATE tb_tasks SET is_done=0 WHERE id={task_id} AND is_done=1"
+          self.curser.execute(query)
+          self.connection.commit()
+          return True

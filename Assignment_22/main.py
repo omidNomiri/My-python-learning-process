@@ -31,6 +31,7 @@ class MainWindow(QMainWindow):
                new_btn.setText("💣")
                new_label.setText(self.tasks[i][1])
                self.ui.grid_Layout.addWidget(new_task_box, i, 0)
+               new_task_box.clicked.connect(partial(self.db.done_task, self.tasks[i][0], self.tasks[i][3]))
                self.ui.grid_Layout.addWidget(new_label, i, 1)
                self.ui.grid_Layout.addWidget(new_btn, i, 2)
                new_btn.clicked.connect(partial(self.db.remove_task, self.tasks[i][0]))
