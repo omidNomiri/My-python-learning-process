@@ -13,18 +13,11 @@ class MainWindow(QMainWindow):
           self.display_data()
           self.priority = 0
 
-     def clear_display(self):
-          while self.ui.grid_Layout.count():
-               item = self.ui.grid_Layout.takeAt(0)
-               widget = item.widget()
-               if widget:
-                    widget.deleteLater()
-
      def display_data(self):
           tasks_done = []
           tasks_not_done = []
           sort_tasks = []
-          self.clear_display()
+          self.repaint()
           self.tasks = self.db.get_task()
           for task in self.tasks:
                if task[3] == 1:
@@ -36,27 +29,31 @@ class MainWindow(QMainWindow):
           sort_tasks += (tasks_not_done + tasks_done)
 
           for i in range(len(sort_tasks)):
-               new_task_box = QCheckBox()
-               new_label = QLabel()
-               new_btn = QPushButton()
+               task_box = QCheckBox()
+               label = QLabel()
+               remove_btn = QPushButton()
+               detail_btn = QPushButton()
 
-               new_btn.setText("💣")
-               new_label.setText(sort_tasks[i][1])
+               remove_btn.setText("💣")
+               detail_btn.setText("!")
+               label.setText(sort_tasks[i][1])
                if sort_tasks[i][3] == 1:
-                    new_task_box.setChecked(True)
-               self.ui.grid_Layout.addWidget(new_task_box, i, 0)
-               new_task_box.clicked.connect(partial(self.db.done_task, sort_tasks[i][0], sort_tasks[i][3]))
+                    task_box.setChecked(True)
+               self.ui.grid_Layout.addWidget(task_box, i, 0)
+               task_box.clicked.connect(partial(self.db.done_task, sort_tasks[i][0], sort_tasks[i][3]))
                if sort_tasks[i][4] == 3:
-                    new_label.setStyleSheet("color:Red;")
+                    label.setStyleSheet("color:Red;")
                elif sort_tasks[i][4] == 2:
-                    new_label.setStyleSheet("color:#ff6600;")
+                    label.setStyleSheet("color:#ff6600;")
                elif sort_tasks[i][4] == 1:
-                    new_label.setStyleSheet("color:#3366ff;")
+                    label.setStyleSheet("color:#3366ff;")
                elif sort_tasks[i][4] == 0:
-                    new_label.setStyleSheet("color:#33cc33;")
-               self.ui.grid_Layout.addWidget(new_label, i, 1)
-               self.ui.grid_Layout.addWidget(new_btn, i, 2)
-               new_btn.clicked.connect(partial(self.db.remove_task, sort_tasks[i][0]))
+                    label.setStyleSheet("color:#33cc33;")
+               self.ui.grid_Layout.addWidget(label, i, 1)
+               self.ui.grid_Layout.addWidget(remove_btn, i, 2)
+               remove_btn.clicked.connect(partial(self.db.remove_task, sort_tasks[i][0]))
+               self.ui.grid_Layout.addWidget(detail_btn, i, 3)
+               detail_btn.clicked.connect(partial(self.show_detail, sort_tasks[i]))
 
      def set_task_priority(self, priority):
           self.priority = priority
@@ -64,7 +61,9 @@ class MainWindow(QMainWindow):
      def new_task(self):
           new_title = self.ui.title_text.text()
           new_description = self.ui.dec_text_box.toPlainText()
-          feedback = self.db.add_new_task(new_title, new_description, self.priority)
+          date = self.ui.dateEdit.date().toString("yyyy-MM-dd")
+          time = self.ui.timeEdit.time().toString()
+          feedback = self.db.add_new_task(new_title, new_description, self.priority, date, time)
           if feedback == True:
                self.display_data()
                self.ui.title_text.setText("")
@@ -73,6 +72,17 @@ class MainWindow(QMainWindow):
                message = QMessageBox()
                message.setText("Error")
                message.exec()
+          self.repaint()
+
+     def show_detail(self,task_info):
+          if task_info[3] == 0:
+               is_done = False
+          if task_info[3] == 1:
+               is_done = True
+          message = QMessageBox()
+          message.setWindowTitle("Task information")
+          message.setText(f"task title: {task_info[1]} \ndescribe: {task_info[2]} \ndata: {task_info[5]} \ntime: {task_info[6]} \nstatus task: {is_done}")
+          message.exec()
 
 if __name__ == "__main__":
      app = QApplication(sys.argv)

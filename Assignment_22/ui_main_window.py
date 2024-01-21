@@ -15,9 +15,9 @@ from PySide6.QtGui import (QBrush, QColor, QConicalGradient, QCursor,
     QFont, QFontDatabase, QGradient, QIcon,
     QImage, QKeySequence, QLinearGradient, QPainter,
     QPalette, QPixmap, QRadialGradient, QTransform)
-from PySide6.QtWidgets import (QApplication, QGridLayout, QLabel, QLineEdit,
-    QMainWindow, QPushButton, QRadioButton, QSizePolicy,
-    QTextEdit, QWidget)
+from PySide6.QtWidgets import (QApplication, QDateEdit, QGridLayout, QLabel,
+    QLineEdit, QMainWindow, QPushButton, QRadioButton,
+    QSizePolicy, QTextEdit, QTimeEdit, QWidget)
 
 class Ui_MainWindow(object):
     def setupUi(self, MainWindow):
@@ -67,6 +67,20 @@ class Ui_MainWindow(object):
         self.rd_not_imp_not_qui = QRadioButton(self.centralwidget)
         self.rd_not_imp_not_qui.setObjectName(u"rd_not_imp_not_qui")
         self.rd_not_imp_not_qui.setGeometry(QRect(660, 230, 161, 21))
+        self.dateEdit = QDateEdit(self.centralwidget)
+        self.dateEdit.setObjectName(u"dateEdit")
+        self.dateEdit.setGeometry(QRect(660, 270, 110, 22))
+        self.timeEdit = QTimeEdit(self.centralwidget)
+        self.timeEdit.setObjectName(u"timeEdit")
+        self.timeEdit.setGeometry(QRect(660, 320, 118, 22))
+        self.label_4 = QLabel(self.centralwidget)
+        self.label_4.setObjectName(u"label_4")
+        self.label_4.setGeometry(QRect(660, 250, 31, 20))
+        self.label_4.setAlignment(Qt.AlignCenter)
+        self.label_5 = QLabel(self.centralwidget)
+        self.label_5.setObjectName(u"label_5")
+        self.label_5.setGeometry(QRect(660, 300, 31, 20))
+        self.label_5.setAlignment(Qt.AlignCenter)
         MainWindow.setCentralWidget(self.centralwidget)
 
         self.retranslateUi(MainWindow)
@@ -84,5 +98,7 @@ class Ui_MainWindow(object):
         self.rd_imp_not_qui.setText(QCoreApplication.translate("MainWindow", u"important Not quick", None))
         self.rd_not_imp_qui.setText(QCoreApplication.translate("MainWindow", u"Not important But quick", None))
         self.rd_not_imp_not_qui.setText(QCoreApplication.translate("MainWindow", u"Not important Not quick", None))
+        self.label_4.setText(QCoreApplication.translate("MainWindow", u"date", None))
+        self.label_5.setText(QCoreApplication.translate("MainWindow", u"time", None))
     # retranslateUi
 
