@@ -36,7 +36,6 @@ class MainWindow(QMainWindow):
           sort_tasks += (tasks_not_done + tasks_done)
 
           for i in range(len(sort_tasks)):
-               print(sort_tasks)
                new_task_box = QCheckBox()
                new_label = QLabel()
                new_btn = QPushButton()
@@ -47,6 +46,14 @@ class MainWindow(QMainWindow):
                     new_task_box.setChecked(True)
                self.ui.grid_Layout.addWidget(new_task_box, i, 0)
                new_task_box.clicked.connect(partial(self.db.done_task, sort_tasks[i][0], sort_tasks[i][3]))
+               if sort_tasks[i][4] == 3:
+                    new_label.setStyleSheet("color:Red;")
+               elif sort_tasks[i][4] == 2:
+                    new_label.setStyleSheet("color:#ff6600;")
+               elif sort_tasks[i][4] == 1:
+                    new_label.setStyleSheet("color:#3366ff;")
+               elif sort_tasks[i][4] == 0:
+                    new_label.setStyleSheet("color:#33cc33;")
                self.ui.grid_Layout.addWidget(new_label, i, 1)
                self.ui.grid_Layout.addWidget(new_btn, i, 2)
                new_btn.clicked.connect(partial(self.db.remove_task, sort_tasks[i][0]))
