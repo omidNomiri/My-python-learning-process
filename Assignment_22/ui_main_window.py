@@ -16,8 +16,8 @@ from PySide6.QtGui import (QBrush, QColor, QConicalGradient, QCursor,
     QImage, QKeySequence, QLinearGradient, QPainter,
     QPalette, QPixmap, QRadialGradient, QTransform)
 from PySide6.QtWidgets import (QApplication, QGridLayout, QLabel, QLineEdit,
-    QMainWindow, QPushButton, QSizePolicy, QTextEdit,
-    QWidget)
+    QMainWindow, QPushButton, QRadioButton, QSizePolicy,
+    QTextEdit, QWidget)
 
 class Ui_MainWindow(object):
     def setupUi(self, MainWindow):
@@ -51,6 +51,22 @@ class Ui_MainWindow(object):
         self.grid_Layout.setHorizontalSpacing(5)
         self.grid_Layout.setVerticalSpacing(10)
         self.grid_Layout.setContentsMargins(25, 25, 25, 25)
+        self.label_3 = QLabel(self.centralwidget)
+        self.label_3.setObjectName(u"label_3")
+        self.label_3.setGeometry(QRect(660, 140, 51, 20))
+        self.label_3.setAlignment(Qt.AlignCenter)
+        self.rd_imp_qui = QRadioButton(self.centralwidget)
+        self.rd_imp_qui.setObjectName(u"rd_imp_qui")
+        self.rd_imp_qui.setGeometry(QRect(660, 170, 141, 21))
+        self.rd_imp_not_qui = QRadioButton(self.centralwidget)
+        self.rd_imp_not_qui.setObjectName(u"rd_imp_not_qui")
+        self.rd_imp_not_qui.setGeometry(QRect(660, 210, 141, 21))
+        self.rd_not_imp_qui = QRadioButton(self.centralwidget)
+        self.rd_not_imp_qui.setObjectName(u"rd_not_imp_qui")
+        self.rd_not_imp_qui.setGeometry(QRect(660, 190, 161, 21))
+        self.rd_not_imp_not_qui = QRadioButton(self.centralwidget)
+        self.rd_not_imp_not_qui.setObjectName(u"rd_not_imp_not_qui")
+        self.rd_not_imp_not_qui.setGeometry(QRect(660, 230, 161, 21))
         MainWindow.setCentralWidget(self.centralwidget)
 
         self.retranslateUi(MainWindow)
@@ -63,5 +79,10 @@ class Ui_MainWindow(object):
         self.btn_add_task.setText(QCoreApplication.translate("MainWindow", u"PushButton", None))
         self.label.setText(QCoreApplication.translate("MainWindow", u"title", None))
         self.label_2.setText(QCoreApplication.translate("MainWindow", u"description", None))
+        self.label_3.setText(QCoreApplication.translate("MainWindow", u"priority", None))
+        self.rd_imp_qui.setText(QCoreApplication.translate("MainWindow", u"important And quick", None))
+        self.rd_imp_not_qui.setText(QCoreApplication.translate("MainWindow", u"important Not quick", None))
+        self.rd_not_imp_qui.setText(QCoreApplication.translate("MainWindow", u"Not important But quick", None))
+        self.rd_not_imp_not_qui.setText(QCoreApplication.translate("MainWindow", u"Not important Not quick", None))
     # retranslateUi
 

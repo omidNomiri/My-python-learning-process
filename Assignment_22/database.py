@@ -10,8 +10,8 @@ class Database:
           result = self.curser.execute(query).fetchall()
           return result
 
-     def add_new_task(self, new_task_title, new_task_description):
-          query = f"INSERT INTO tb_tasks(title, description) VALUES ('{new_task_title}','{new_task_description}')"
+     def add_new_task(self, new_task_title, new_task_description, priority):
+          query = f"INSERT INTO tb_tasks(title, description, priority) VALUES ('{new_task_title}','{new_task_description}','{priority}')"
           self.curser.execute(query)
           self.connection.commit()
           return True
