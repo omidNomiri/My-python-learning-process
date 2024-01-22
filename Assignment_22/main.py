@@ -1,13 +1,14 @@
 import sys
 from functools import partial
 from PySide6.QtWidgets import QMessageBox,QMainWindow,QApplication,QCheckBox,QLabel,QPushButton
-from ui_main_window import Ui_MainWindow
+from PySide6.QtGui import QFont
+from ui_main_window import Ui_TODOAPP
 from database import Database
 
 class MainWindow(QMainWindow):
      def __init__(self):
           super().__init__()
-          self.ui = Ui_MainWindow()
+          self.ui = Ui_TODOAPP()
           self.ui.setupUi(self)
           self.db = Database()
           self.display_data()
@@ -35,10 +36,20 @@ class MainWindow(QMainWindow):
                detail_btn = QPushButton()
 
                remove_btn.setText("💣")
+               remove_btn.setMaximumHeight(26)
                detail_btn.setText("!")
+               detail_btn.setMaximumHeight(26)
+               label.setFont(QFont("Arial", 16))
                label.setText(sort_tasks[i][1])
                if sort_tasks[i][3] == 1:
                     task_box.setChecked(True)
+                    label.setStyleSheet("border-radius: 6px;  background-color: #ff5050;")
+                    remove_btn.setStyleSheet("border-radius: 6px;  background-color: #ff5050;")
+                    detail_btn.setStyleSheet("border-radius: 6px;  background-color: #ff5050;")
+               elif sort_tasks[i][3] == 0:
+                    label.setStyleSheet("border-radius: 6px;  background-color: #33cc33;")
+                    remove_btn.setStyleSheet("border-radius: 6px;  background-color: #33cc33;")
+                    detail_btn.setStyleSheet("border-radius: 6px;  background-color: #33cc33;")
                self.ui.grid_Layout.addWidget(task_box, i, 0)
                task_box.clicked.connect(partial(self.db.done_task, sort_tasks[i][0], sort_tasks[i][3]))
                if sort_tasks[i][4] == 3:
