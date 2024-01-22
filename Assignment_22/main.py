@@ -19,61 +19,78 @@ class MainWindow(QMainWindow):
           tasks_not_done = []
           sort_tasks = []
           self.repaint()
-          self.tasks = self.db.get_task()
-          for task in self.tasks:
-               if task[3] == 1:
-                    tasks_done.append(list(task))
-               else:
-                    tasks_not_done.append(list(task))
 
-          tasks_not_done.sort(key=lambda task: task[4], reverse=True)
-          sort_tasks += (tasks_not_done + tasks_done)
+          try:
+               self.tasks = self.db.get_task()
+               for task in self.tasks:
+                    if task[3] == 1:
+                         tasks_done.append(list(task))
+                    else:
+                         tasks_not_done.append(list(task))
+          except Exception as error:
+               print(f"split list error: {error}")
 
-          for i in range(len(sort_tasks)):
-               task_box = QCheckBox()
-               label = QLabel()
-               remove_btn = QPushButton()
-               detail_btn = QPushButton()
+          try:
+               tasks_not_done.sort(key=lambda task: task[4], reverse=True)
+               sort_tasks += (tasks_not_done + tasks_done)
+          except Exception as error:
+               print(f"sort list error: {error}")
 
-               remove_btn.setText("💣")
-               remove_btn.setMaximumHeight(26)
-               detail_btn.setText("!")
-               detail_btn.setMaximumHeight(26)
-               label.setFont(QFont("Arial", 16))
-               label.setText(sort_tasks[i][1])
-               if sort_tasks[i][3] == 1:
-                    task_box.setChecked(True)
-                    label.setStyleSheet("border-radius: 6px;  background-color: #ff5050;")
-                    remove_btn.setStyleSheet("border-radius: 6px;  background-color: #ff5050;")
-                    detail_btn.setStyleSheet("border-radius: 6px;  background-color: #ff5050;")
-               elif sort_tasks[i][3] == 0:
-                    label.setStyleSheet("border-radius: 6px;  background-color: #33cc33;")
-                    remove_btn.setStyleSheet("border-radius: 6px;  background-color: #33cc33;")
-                    detail_btn.setStyleSheet("border-radius: 6px;  background-color: #33cc33;")
-               self.ui.grid_Layout.addWidget(task_box, i, 0)
-               task_box.clicked.connect(partial(self.db.done_task, sort_tasks[i][0], sort_tasks[i][3]))
-               if sort_tasks[i][4] == 3:
-                    label.setStyleSheet("color:Red;")
-               elif sort_tasks[i][4] == 2:
-                    label.setStyleSheet("color:#ff6600;")
-               elif sort_tasks[i][4] == 1:
-                    label.setStyleSheet("color:#3366ff;")
-               elif sort_tasks[i][4] == 0:
-                    label.setStyleSheet("color:#33cc33;")
-               self.ui.grid_Layout.addWidget(label, i, 1)
-               self.ui.grid_Layout.addWidget(remove_btn, i, 2)
-               remove_btn.clicked.connect(partial(self.db.remove_task, sort_tasks[i][0]))
-               self.ui.grid_Layout.addWidget(detail_btn, i, 3)
-               detail_btn.clicked.connect(partial(self.show_detail, sort_tasks[i]))
+          try:
+               for i in range(len(sort_tasks)):
+                    task_box = QCheckBox()
+                    label = QLabel()
+                    remove_btn = QPushButton()
+                    detail_btn = QPushButton()
+
+                    remove_btn.setText("💣")
+                    remove_btn.setMaximumHeight(26)
+                    detail_btn.setText("!")
+                    detail_btn.setMaximumHeight(26)
+                    label.setFont(QFont("Arial", 16))
+                    label.setText(sort_tasks[i][1])
+                    if sort_tasks[i][3] == 1:
+                         task_box.setChecked(True)
+                         label.setStyleSheet("border-radius: 6px;  background-color: #ff5050;")
+                         remove_btn.setStyleSheet("border-radius: 6px;  background-color: #ff5050;")
+                         detail_btn.setStyleSheet("border-radius: 6px;  background-color: #ff5050;")
+                    elif sort_tasks[i][3] == 0:
+                         label.setStyleSheet("border-radius: 6px;  background-color: #33cc33;")
+                         remove_btn.setStyleSheet("border-radius: 6px;  background-color: #33cc33;")
+                         detail_btn.setStyleSheet("border-radius: 6px;  background-color: #33cc33;")
+                    self.ui.grid_Layout.addWidget(task_box, i, 0)
+                    task_box.clicked.connect(partial(self.db.done_task, sort_tasks[i][0], sort_tasks[i][3]))
+                    if sort_tasks[i][4] == 3:
+                         label.setStyleSheet("color:Red;")
+                    elif sort_tasks[i][4] == 2:
+                         label.setStyleSheet("color:#ff6600;")
+                    elif sort_tasks[i][4] == 1:
+                         label.setStyleSheet("color:#3366ff;")
+                    elif sort_tasks[i][4] == 0:
+                         label.setStyleSheet("color:#33cc33;")
+                    self.ui.grid_Layout.addWidget(label, i, 1)
+                    self.ui.grid_Layout.addWidget(remove_btn, i, 2)
+                    remove_btn.clicked.connect(partial(self.db.remove_task, sort_tasks[i][0]))
+                    self.ui.grid_Layout.addWidget(detail_btn, i, 3)
+                    detail_btn.clicked.connect(partial(self.show_detail, sort_tasks[i]))
+          except Exception as error:
+               print(f"display task error: {error}")
 
      def set_task_priority(self, priority):
-          self.priority = priority
+          try:
+               self.priority = priority
+          except Exception as error:
+               print(f"set priority error: {error}")
 
      def new_task(self):
-          new_title = self.ui.title_text.text()
-          new_description = self.ui.dec_text_box.toPlainText()
-          date = self.ui.dateEdit.date().toString("yyyy-MM-dd")
-          time = self.ui.timeEdit.time().toString()
+          try:
+               new_title = self.ui.title_text.text()
+               new_description = self.ui.dec_text_box.toPlainText()
+               date = self.ui.dateEdit.date().toString("yyyy-MM-dd")
+               time = self.ui.timeEdit.time().toString()
+          except Exception as error:
+               print(f"get data from ui error: {error}")
+
           feedback = self.db.add_new_task(new_title, new_description, self.priority, date, time)
           if feedback == True:
                self.display_data()
