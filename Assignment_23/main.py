@@ -2,6 +2,7 @@ import sys
 from random import randint
 from sudoku import Sudoku
 from functools import partial
+import PySide6.QtCore
 from PySide6.QtWidgets import QMainWindow ,QApplication ,QLineEdit ,QFileDialog
 from ui_main_window import Ui_MainWindow
 
@@ -10,14 +11,18 @@ class Sudoku_game(QMainWindow):
           super().__init__()
           self.ui = Ui_MainWindow()
           self.ui.setupUi(self)
+          self.mode = 0
           self.ui.new_game_menu.triggered.connect(self.new_game)
           self.ui.open_file_menu.triggered.connect(self.open_file)
+          self.ui.dark_mode_toggle_btn.clicked.connect(partial(self.theme_toggle))
+          self.ui.dark_mode_toggle_btn.setText("🌑")
           self.line_text = [[None for row in range(9)] for column in range(9)]
 
           for row in range(9):
                for column in range(9):
                     new_line_edit = QLineEdit()
                     self.ui.grid_layout.addWidget(new_line_edit, row, column)
+                    new_line_edit.setAlignment((PySide6.QtCore.Qt.AlignCenter))
                     new_line_edit.textChanged.connect(partial(self.validation ,row ,column))
                     self.line_text[row][column] = new_line_edit
 
@@ -32,6 +37,16 @@ class Sudoku_game(QMainWindow):
                          self.line_text[row][column].setReadOnly(True)
                     else:
                          self.line_text[row][column].setText("")
+
+     def theme_toggle(self):
+          if self.mode == 0:
+               self.ui.dark_mode_toggle_btn.setText("🌕")
+               self.setStyleSheet("background-color: #404040; color: white;")
+               self.mode = 1
+          elif self.mode == 1:
+               self.ui.dark_mode_toggle_btn.setText("🌑")
+               self.setStyleSheet("")
+               self.mode = 0
 
      def open_file(self):
           file_path = QFileDialog.getOpenFileName(self ,"select your file")[0]

@@ -18,12 +18,22 @@
     <property name="geometry">
      <rect>
       <x>10</x>
-      <y>10</y>
+      <y>30</y>
       <width>781</width>
-      <height>561</height>
+      <height>541</height>
      </rect>
     </property>
     <layout class="QGridLayout" name="grid_layout"/>
+   </widget>
+   <widget class="QPushButton" name="dark_mode_toggle_btn">
+    <property name="geometry">
+     <rect>
+      <x>760</x>
+      <y>0</y>
+      <width>31</width>
+      <height>31</height>
+     </rect>
+    </property>
    </widget>
   </widget>
   <widget class="QMenuBar" name="menubar">
@@ -41,6 +51,7 @@
     </property>
     <addaction name="open_file_menu"/>
     <addaction name="new_game_menu"/>
+    <addaction name="actionsolve"/>
    </widget>
    <addaction name="menunew_game"/>
   </widget>
@@ -52,6 +63,11 @@
   <action name="new_game_menu">
    <property name="text">
     <string>new game</string>
+   </property>
+  </action>
+  <action name="actionsolve">
+   <property name="text">
+    <string>solve</string>
    </property>
   </action>
  </widget>
