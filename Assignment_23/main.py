@@ -13,7 +13,7 @@ class Sudoku_game(QMainWindow):
         self.msg_box = QMessageBox()
         self.ui.setupUi(self)
         self.mode = 0
-        self.win = False
+        self.win = True
         self.puzzle = Sudoku(3, randint(0 ,1000)).difficulty(0.5)
 
         self.ui.new_game_menu.triggered.connect(self.new_game)
@@ -96,10 +96,11 @@ class Sudoku_game(QMainWindow):
             self.mode = 0
 
     def validation(self, row, column ,text):
-         if text not in ["1" ,"2" ,"3" ,"4" ,"5" ,"6" ,"7" ,"8" ,"9"]:
-              self.line_text[row][column].setText("")
+        if text not in ["1" ,"2" ,"3" ,"4" ,"5" ,"6" ,"7" ,"8" ,"9"]:
+            self.line_text[row][column].setText("")
 
-         self.check(self.line_text)
+        self.check(self.line_text)
+        self.check_winner()
 
     def check(self ,board):
         for row in range(9):
@@ -130,7 +131,13 @@ class Sudoku_game(QMainWindow):
         solved_puzzle = Sudoku.solve(self.puzzle)
         print(solved_puzzle)
         for i in range(len(self.puzzle)):
-            ...
+            for j in range(len(self.puzzle)):
+                if solved_puzzle[i][j] != self.puzzle[i][j]:
+                    self.win = False
+        if self.win == True:
+            self.msg_box.setWindowTitle("win")
+            self.msg_box.setText("you win!")
+            self.msg_box.exec()
 
     def Exit(self):
        	exit(0)
