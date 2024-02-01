@@ -3,7 +3,7 @@ from random import randint
 from sudoku import Sudoku
 from functools import partial
 import PySide6.QtCore
-from PySide6.QtWidgets import QMainWindow ,QApplication ,QLineEdit ,QFileDialog ,QMessageBox
+from PySide6.QtWidgets import QMainWindow ,QApplication ,QLineEdit ,QFileDialog ,QMessageBox ,QSizePolicy
 from ui_main_window import Ui_MainWindow
 
 class Sudoku_game(QMainWindow):
@@ -37,6 +37,7 @@ class Sudoku_game(QMainWindow):
                 new_line_edit = QLineEdit()
                 self.ui.grid_layout.addWidget(new_line_edit, row, column)
                 new_line_edit.setAlignment((PySide6.QtCore.Qt.AlignCenter))
+                new_line_edit.setSizePolicy(QSizePolicy.Preferred , QSizePolicy.Preferred)
                 new_line_edit.textChanged.connect(partial(self.validation ,row ,column))
                 self.line_text[row][column] = new_line_edit
 
