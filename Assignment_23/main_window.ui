@@ -35,6 +35,19 @@
      </rect>
     </property>
    </widget>
+   <widget class="QPushButton" name="exit_btn">
+    <property name="geometry">
+     <rect>
+      <x>720</x>
+      <y>0</y>
+      <width>31</width>
+      <height>31</height>
+     </rect>
+    </property>
+    <property name="text">
+     <string>❌</string>
+    </property>
+   </widget>
   </widget>
   <widget class="QMenuBar" name="menubar">
    <property name="geometry">
@@ -51,7 +64,9 @@
     </property>
     <addaction name="open_file_menu"/>
     <addaction name="new_game_menu"/>
-    <addaction name="actionsolve"/>
+    <addaction name="solve_menu"/>
+    <addaction name="about_menu"/>
+    <addaction name="help_menu"/>
    </widget>
    <addaction name="menunew_game"/>
   </widget>
@@ -65,9 +80,19 @@
     <string>new game</string>
    </property>
   </action>
-  <action name="actionsolve">
+  <action name="solve_menu">
    <property name="text">
     <string>solve</string>
+   </property>
+  </action>
+  <action name="about_menu">
+   <property name="text">
+    <string>about</string>
+   </property>
+  </action>
+  <action name="help_menu">
+   <property name="text">
+    <string>help</string>
    </property>
   </action>
  </widget>
