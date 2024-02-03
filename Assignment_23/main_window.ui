@@ -14,7 +14,7 @@
    <string>MainWindow</string>
   </property>
   <widget class="QWidget" name="centralwidget">
-   <widget class="QWidget" name="gridLayoutWidget">
+   <widget class="QWidget" name="gridWidget" native="true">
     <property name="geometry">
      <rect>
       <x>10</x>
@@ -22,6 +22,10 @@
       <width>781</width>
       <height>541</height>
      </rect>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">border: 2px solid black;
+  border-radius: 5px;</string>
     </property>
     <layout class="QGridLayout" name="grid_layout"/>
    </widget>
@@ -34,6 +38,10 @@
       <height>31</height>
      </rect>
     </property>
+    <property name="styleSheet">
+     <string notr="true">border: 2px solid black;
+  border-radius: 5px;</string>
+    </property>
    </widget>
    <widget class="QPushButton" name="exit_btn">
     <property name="geometry">
@@ -43,6 +51,10 @@
       <width>31</width>
       <height>31</height>
      </rect>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">border: 2px solid black;
+  border-radius: 5px;</string>
     </property>
     <property name="text">
      <string>❌</string>
