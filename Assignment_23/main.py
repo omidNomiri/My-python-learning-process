@@ -25,7 +25,7 @@ class SudokuGame(QMainWindow):
         self.ui.dark_mode_toggle_btn.clicked.connect(partial(self.theme_toggle))
         self.ui.exit_btn.clicked.connect(partial(self.Exit))
 
-        self.ui.dark_mode_toggle_btn.setText("")
+        self.ui.dark_mode_toggle_btn.setText("🌑")
         self.line_text = [[None for row in range(9)] for column in range(9)]
 
         self.new_game()
