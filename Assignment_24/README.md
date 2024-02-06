@@ -23,7 +23,7 @@ The goal of this project is to compare the execution speed of two Python scripts
 
 ## Result
 
-- Without thread: 7.50431227684021
-- With thread: 4.791076421737671
+- Without thread: 7.50431227684021 sec
+- With thread: 4.791076421737671 sec
 
 Here you can see when we use threads to make apps faster.
