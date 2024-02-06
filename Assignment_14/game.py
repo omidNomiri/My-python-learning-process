@@ -1,5 +1,6 @@
 import arcade
-import time
+from time import sleep
+from threading import Thread 
 from spaceship import Spaceship
 from enemy import Enemy
 
@@ -14,11 +15,15 @@ class Game(arcade.Window):
         self.score = 0
         self.laser_sound = arcade.load_sound(":resources:sounds/laser3.wav")
         self.explosion_sound = arcade.load_sound(":resources:sounds/explosion1.wav")
-        arcade.schedule(self.add_enemy, 3)
 
-    def add_enemy(self, delta_time):
-        new_enemy = Enemy(self.width, self.height)
-        self.enemy_list.append(new_enemy)
+        self.thread = Thread(target=self.add_enemy)
+        self.thread.start()
+
+    def add_enemy(self):
+        while True:    
+            new_enemy = Enemy(self.width, self.height)
+            self.enemy_list.append(new_enemy)
+            sleep(3)
 
     def on_draw(self):
         arcade.start_render()
@@ -35,7 +40,6 @@ class Game(arcade.Window):
 
         if self.heart_number == 0:
             arcade.draw_text("GAME OVER!", self.width//2 , self.height//2 , arcade.color.RED , 50)
-            time.sleep(3)
             exit(0)
 
     def on_key_release(self, symbol: int, modifiers: int):
@@ -54,7 +58,6 @@ class Game(arcade.Window):
         for enemy in self.enemy_list:
             if arcade.check_for_collision(self.defender,enemy):
                 arcade.draw_text("GAME OVER!", self.width//2 , self.height//2 , arcade.color.RED , 50)
-                time.sleep(3)
                 exit(0)
 
         for enemy in self.enemy_list:
@@ -77,7 +80,6 @@ class Game(arcade.Window):
             if enemy.center_y < 0:
                 self.enemy_list.remove(enemy)
                 self.heart_number -= 1
-                
 
         for bullet in self.defender.bullet_list:
             if bullet.center_y < 0:
