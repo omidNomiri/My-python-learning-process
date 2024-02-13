@@ -1,22 +1,33 @@
 import time
-from PySide6.QtCore import QThread ,Signal
-from time_property import time_property
+from PySide6.QtCore import QThread, Signal
 
 class world_clock_thread(QThread):
-    world_clock_signal = Signal(time_property ,str)
+    world_clock_signal = Signal(int, int, int, str)
+
+    def __init__(self):
+        super().__init__()
+        self._prev_time = None
 
     def run(self):
         while True:
-            self.time = time.time()
-            self.struct_time = time.gmtime(self.time)
-            self.time_iran = time_property(self.struct_time.tm_hour ,self.struct_time.tm_min ,self.struct_time.tm_sec)
-            self.time_iran.add(3 ,30 ,0)
-            self.world_clock_signal.emit(self.time_iran ,"iran")
+            self.sleep(1)
 
-            self.time_germany = time_property(self.struct_time.tm_hour ,self.struct_time.tm_min ,self.struct_time.tm_sec)
-            self.time_germany.add(5 ,0 ,0)
-            self.world_clock_signal.emit(self.time_germany ,"germany")
+            current_time = int(time.time())
+            if current_time != self._prev_time:
+                self._prev_time = current_time
 
-            self.time_usa = time_property(self.struct_time.tm_hour ,self.struct_time.tm_min ,self.struct_time.tm_sec)
-            self.time_usa.sub(1 ,0 ,0)
-            self.world_clock_signal.emit(self.time_usa ,"usa")
+                hours_iran = (current_time // 3600 + 3) % 24
+                minutes_iran = (current_time // 60) % 60
+                seconds_iran = current_time % 60
+
+                hours_germany = (current_time // 3600 + 1) % 24
+                minutes_germany = (current_time // 60) % 60
+                seconds_germany = current_time % 60
+
+                hours_usa = (current_time // 3600 - 8) % 24
+                minutes_usa = (current_time // 60) % 60
+                seconds_usa = current_time % 60
+
+                self.world_clock_signal.emit(hours_iran, minutes_iran, seconds_iran, "iran")
+                self.world_clock_signal.emit(hours_germany, minutes_germany, seconds_germany, "germany")
+                self.world_clock_signal.emit(hours_usa, minutes_usa, seconds_usa, "usa")

@@ -17,13 +17,13 @@ class Clock(QMainWindow):
         self.world_clock.start()
         self.world_clock.world_clock_signal.connect(self.show_world_clock)
 
-    def show_world_clock(self ,time ,country):
+    def show_world_clock(self ,hour ,minute ,second ,country):
         if country == "iran":
-            self.ui.iran_show_time_lb.setText(f"{time.hour}:{time.minute}:{time.second}")
+            self.ui.iran_show_time_lb.setText(f"{hour}:{minute}:{second}")
         elif country == "germany":
-            self.ui.germany_show_time_lb.setText(f"{time.hour}:{time.minute}:{time.second}")
+            self.ui.germany_show_time_lb.setText(f"{hour}:{minute}:{second}")
         elif country == "usa":
-            self.ui.usa_show_time_lb.setText(f"{time.hour}:{time.minute}:{time.second}")
+            self.ui.usa_show_time_lb.setText(f"{hour}:{minute}:{second}")
 
 if __name__ == "__main__":
     app = QApplication(argv)
