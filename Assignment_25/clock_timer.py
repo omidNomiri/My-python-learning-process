@@ -32,4 +32,5 @@ class Timer_thread(QThread):
                 self.hour -= 1
 
             if self.hour == 0 and self.minute == 0 and self.second == 0:
+                self.end = True
                 self.timer_finished_signal.emit(hour, minute, second)
