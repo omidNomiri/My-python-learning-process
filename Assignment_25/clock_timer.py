@@ -1,5 +1,6 @@
 from PySide6.QtCore import QThread, Signal
 
+
 class Timer_thread(QThread):
     timer_finished_signal = Signal()
 

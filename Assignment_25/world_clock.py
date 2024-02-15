@@ -1,6 +1,7 @@
 import time
 from PySide6.QtCore import QThread, Signal
 
+
 class world_clock_thread(QThread):
     world_clock_signal = Signal(int, int, int, str)
 
@@ -28,6 +29,9 @@ class world_clock_thread(QThread):
                 minutes_usa = (current_time // 60) % 60
                 seconds_usa = current_time % 60
 
-                self.world_clock_signal.emit(hours_iran, minutes_iran, seconds_iran, "iran")
-                self.world_clock_signal.emit(hours_germany, minutes_germany, seconds_germany, "germany")
-                self.world_clock_signal.emit(hours_usa, minutes_usa, seconds_usa, "usa")
+                self.world_clock_signal.emit(
+                    hours_iran, minutes_iran, seconds_iran, "iran")
+                self.world_clock_signal.emit(
+                    hours_germany, minutes_germany, seconds_germany, "germany")
+                self.world_clock_signal.emit(
+                    hours_usa, minutes_usa, seconds_usa, "usa")

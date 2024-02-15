@@ -1,7 +1,8 @@
 from PySide6.QtCore import QThread, Signal
 
+
 class Stop_watch_thread(QThread):
-    stop_watch_signal = Signal(int ,int ,int)
+    stop_watch_signal = Signal(int, int, int)
 
     def __init__(self):
         super().__init__()
@@ -22,4 +23,4 @@ class Stop_watch_thread(QThread):
                 self.minute = 0
                 self.hour += 1
 
-            self.stop_watch_signal.emit(self.hour ,self.minute ,self.second)
+            self.stop_watch_signal.emit(self.hour, self.minute, self.second)
