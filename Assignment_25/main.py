@@ -1,13 +1,14 @@
 from sys import argv
 from functools import partial
-from PySide6.QtWidgets import QMainWindow ,QApplication ,QMessageBox ,QLabel ,QPushButton ,QCheckBox
-from PySide6.QtGui import QFontDatabase ,QFont
+from PySide6.QtWidgets import QMainWindow, QApplication, QMessageBox, QLabel, QPushButton, QCheckBox
+from PySide6.QtGui import QFontDatabase, QFont
 from ui_main_window import Ui_MainWindow
 from world_clock import world_clock_thread
 from clock_timer import Timer_thread
 from stopwatch import Stop_watch_thread
 from alarm import Alarm_thread
 from alarm_database import Database
+
 
 class Clock(QMainWindow):
     def __init__(self):
@@ -19,7 +20,8 @@ class Clock(QMainWindow):
         self.ui.input_minute_text.setText("00")
         self.ui.input_second_text.setText("00")
         self.seven_segment_font = "Assignment_25/src/DSEG7Modern-Regular.ttf"
-        QFontDatabase.addApplicationFont("Assignment_25/src/DSEG7Modern-Regular.ttf")
+        QFontDatabase.addApplicationFont(
+            "Assignment_25/src/DSEG7Modern-Regular.ttf")
 
         self.data_base = Database()
         self.list_of_alarm = []
@@ -42,7 +44,8 @@ class Clock(QMainWindow):
         if country == "iran":
             self.ui.iran_show_time_lb.setText(f"{hour} : {minute} : {second}")
         elif country == "germany":
-            self.ui.germany_show_time_lb.setText(f"{hour} : {minute} : {second}")
+            self.ui.germany_show_time_lb.setText(
+                f"{hour} : {minute} : {second}")
         elif country == "usa":
             self.ui.usa_show_time_lb.setText(f"{hour} : {minute} : {second}")
 
@@ -94,7 +97,7 @@ class Clock(QMainWindow):
         new_min = self.ui.input_minute_text_alarm.text()
         new_time = f"{new_h} : {new_min}"
         if self.data_base.add_alarm(new_time, new_title) == False:
-            self.msg_box.setWindowTitle("❌Error!!❌")
+            self.msg_box.setWindowTitle("Error")
             self.msg_box.exec()
 
         else:
@@ -121,7 +124,8 @@ class Clock(QMainWindow):
 
             print(self.alarm_list[row][1], self.alarm_list[row][2])
             new_label_time.setText(self.alarm_list[row][1])
-            new_label_time.setFont(QFont("Assignment_25/src/DSEG7Modern-Regular.ttf" ,18))
+            new_label_time.setFont(
+                QFont("Assignment_25/src/DSEG7Modern-Regular.ttf", 18))
             new_label_title.setText(self.alarm_list[row][2])
             new_button.setText("X")
             new_button.setStyleSheet("background-color: rgb(255, 20, 0)")
@@ -143,7 +147,7 @@ class Clock(QMainWindow):
 
     def delete_alarm(self, id):
         if self.data_base.delete_alarm(id) == False:
-            self.msg_box.setWindowTitle("❌Error!!❌")
+            self.msg_box.setWindowTitle("Error")
             self.msg_box.setText("Please try again later")
             self.msg_box.exec()
 
