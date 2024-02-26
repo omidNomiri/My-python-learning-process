@@ -18,6 +18,8 @@ rows, columns = gray_image.shape
 # run time = 0.0009999275207519531
 
 _, threshold_image = cv2.threshold(gray_image, 100, 255, cv2.THRESH_BINARY)
+cv2.putText(threshold_image, "Batman", (350, 850),
+            cv2.FONT_HERSHEY_SIMPLEX, 3, 0, 5)
 
 cv2.imshow("threshold image", threshold_image)
 cv2.waitKey(0)
