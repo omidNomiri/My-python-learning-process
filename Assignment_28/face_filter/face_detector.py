@@ -1,5 +1,4 @@
 import cv2
-import numpy as np
 
 # image = cv2.imread("Assignment_28/face_filter/face.jpeg")
 webcam = cv2.VideoCapture(0)
@@ -9,50 +8,85 @@ face_detector = cv2.CascadeClassifier(
 lip_detector = cv2.CascadeClassifier(
     cv2.data.haarcascades + "haarcascade_smile.xml")
 eye_detector = cv2.CascadeClassifier(
-    cv2.data.haarcascades + "haarcascade_eye.xml")
+    cv2.data.haarcascades + "haarcascade_eye_tree_eyeglasses.xml")
 
 
-def sticker_face_filter(image, sticker):
+def sticker_face_filter(image):
+    tiger_sticker = cv2.imread("Assignment_28/face_filter/tiger.png")
     frame_gray = cv2.cvtColor(frame, cv2.COLOR_BGR2GRAY)
     faces_stick = face_detector.detectMultiScale(frame_gray, 1.3)
     for (x, y, w, h) in faces_stick:
-        sticker = cv2.resize(sticker, [w, h])
+        tiger_sticker = cv2.resize(tiger_sticker, [w, h])
         for i in range(h):
             for j in range(w):
-                if sticker[i][j][0] == 0 and sticker[i][j][1] == 0 and sticker[i][j][2] == 0:
-                    sticker[i][j] = image[y+i, x+j]
-        frame[y:y+h, x:x+w] = sticker
+                if tiger_sticker[i][j][0] == 0 and tiger_sticker[i][j][1] == 0 and tiger_sticker[i][j][2] == 0:
+                    tiger_sticker[i][j] = image[y+i, x+j]
+        frame[y:y+h, x:x+w] = tiger_sticker
 
     return image
 
 
-def glasses_and_lips_filter(image, faces, eyes, lips):
-    for lip in lips:
-        x_lip, y_lip, w_lip, h_lip = lip
-        resized_lip = cv2.resize(lip_sticker, [w_lip, h_lip])
+def glasses_and_lips_filter(image):
+    glasses_sticker = cv2.imread(
+        "Assignment_28/face_filter/glasses.png", cv2.IMREAD_UNCHANGED)
+    lip_sticker = cv2.imread(
+        "Assignment_28/face_filter/lips.png", cv2.IMREAD_UNCHANGED)
 
-        for i in range(w_lip):
-            for j in range(h_lip):
-                if resized_lip[i][j][0] == resized_lip[i][j][1] == resized_lip[i][j][2] == 0:
-                    resized_lip[i][j] = image[y_lip + i, x_lip + j]
+    eyes = eye_detector.detectMultiScale(frame_gray, 1.5, maxSize=(50, 50))
+    lips = lip_detector.detectMultiScale(frame, 1.3, 45)
 
-        image[y_lip: y_lip + h_lip, x_lip: x_lip + w_lip] = resized_lip
+    if image.shape[2] == 4:
+        image = image[:, :, :3]
 
-    for face in faces:
-        x_face, y_face, w_face, h_face = face
+    for lips in lips:
+        x, y, w, h = lips
 
-        for eye in eyes:
-            x_eye, y_eye, w_eye, h_eye = eye
-            resized_glasses = cv2.resize(glasses_sticker, [w_face, h_eye + 20])
+        lips_sticker_resized = cv2.resize(lip_sticker, (w, h))
 
-            for row in range(w_eye + 20):
-                for col in range(h_face):
-                    if resized_glasses[row][col][0] == resized_glasses[row][col][1] == resized_glasses[row][col][2] == 0:
-                        resized_glasses[row][col] = image[y_eye +
-                                                          row, x_face + col]
+        sticker_alpha_lips = lips_sticker_resized[:, :, 3] / 255
+        sticker_inv_alpha_lips = 1.0 - sticker_alpha_lips
+        face_region_lips = image[y:y + h, x:x + w]
 
-            image[y_eye: y_eye + h_eye + 20,
-                  x_face: x_face + w_face] = resized_glasses
+        for channel in range(3):
+            face_region_lips[:, :, channel] = (sticker_alpha_lips * lips_sticker_resized[:, :, channel] +
+                                        sticker_inv_alpha_lips * face_region_lips[:, :, channel])
+
+    if len(eyes) >= 2:
+        x_mid = sum((x + w // 2) for (x, y, w, h) in eyes) / len(eyes)
+        y_mid = sum((y + h // 2) for (x, y, w, h) in eyes) / len(eyes)
+
+        width, height = 150, 100
+
+        x_sticker = x_mid - width // 2
+        y_sticker = y_mid - height // 2
+
+        glasses = cv2.resize(glasses_sticker, (width, height))
+
+        glass_alpha = glasses[:, :, 3] / 255
+        sticker_inv_alpha = 1 - glass_alpha
+        face_region = image[int(y_sticker):int(
+            y_sticker + height), int(x_sticker):int(x_sticker + width)]
+
+        for channel in range(3):
+            face_region[:, :, channel] = (glass_alpha * glasses[:, :, channel] +
+                                    sticker_inv_alpha * face_region[:, :, channel])
+    # for eye in eyes:
+    #     x, y, w, h = eye
+    #     if glasses_sticker.shape[2] == 4:
+    #         glasses_sticker = glasses_sticker[:, :, :3]
+    #     resized_glasses = cv2.resize(glasses_sticker, [w, h])
+
+        # for i in range(h):
+        #     for j in range(w):
+        #         if resized_glasses[i][j][0] == 0 and resized_glasses[i][j][1] == 0 and resized_glasses[i][j][2] == 0:
+        #             resized_glasses[i][j] = image[y+i, x+j]
+
+        # image[y: y + h, x: x + w] = resized_glasses
+
+    # for face in faces:
+    #     x, y, w, h = face
+    #     resized_glasses = cv2.resize(glasses_sticker, [w, h])
+    #     frame[x:x+w, y:y+h] = resized_glasses
     return image
 
 
@@ -78,26 +112,41 @@ def mirror_filter(image):
     return image
 
 
-tiger_sticker = cv2.imread("Assignment_28/face_filter/tiger.png")
-glasses_sticker = cv2.imread(
-    "Assignment_28/face_filter/glasses.png", cv2.IMREAD_UNCHANGED)
-lip_sticker = cv2.imread(
-    "Assignment_28/face_filter/lips.png", cv2.IMREAD_UNCHANGED)
+def set_filter(filter=1):
+    if filter == 1:
+        filter_selection = 1
+    elif filter == 2:
+        filter_selection = 2
+    elif filter == 3:
+        filter_selection = 3
+    elif filter == 4:
+        filter_selection = 4
+    return filter_selection
 
+
+filter_selection = 3
 while True:
     _, frame = webcam.read()
     frame_gray = cv2.cvtColor(frame, cv2.COLOR_RGB2GRAY)
     faces = face_detector.detectMultiScale(frame_gray, 1.3)
-    eyes = eye_detector.detectMultiScale(frame_gray, 1.3, 20)
-    lips = lip_detector.detectMultiScale(frame_gray, 1.3)
-    key = cv2.waitKey(100) & 0xFF
+    key = cv2.waitKey(25) & 0xFF
+
     if key == ord('1'):
-        image = sticker_face_filter(frame, tiger_sticker)
-    if key == ord('2'):
-        image = glasses_and_lips_filter(frame, faces, eyes, lips)
-    if key == ord('3'):
+        filter_selection = set_filter(1)
+    elif key == ord('2'):
+        filter_selection = set_filter(2)
+    elif key == ord('3'):
+        filter_selection = set_filter(3)
+    elif key == ord('4'):
+        filter_selection = set_filter(4)
+
+    if filter_selection == 1:
+        image = sticker_face_filter(frame)
+    elif filter_selection == 2:
+        image = glasses_and_lips_filter(frame)
+    elif filter_selection == 3:
         image = chess_board_filter(frame)
-    if key == ord('4'):
+    elif filter_selection == 4:
         image = mirror_filter(frame)
 
     cv2.imshow("result", frame)
