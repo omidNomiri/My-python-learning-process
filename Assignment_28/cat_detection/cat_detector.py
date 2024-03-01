@@ -5,7 +5,7 @@ number_of_cat = 0
 cat_detector = cv2.CascadeClassifier(cv2.data.haarcascades +
                                      "haarcascade_frontalcatface.xml")
 
-cats = cat_detector.detectMultiScale(cat_image, 1.3)
+cats = cat_detector.detectMultiScale(cat_image)
 for cat in cats:
     number_of_cat += 1
     x, y, w, h = cat
