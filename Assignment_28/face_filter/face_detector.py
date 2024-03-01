@@ -27,7 +27,31 @@ def sticker_face_filter(image, sticker):
 
 
 def glasses_and_lips_filter(image, faces, eyes, lips):
-    ...
+    for lip in lips :
+        x_lip , y_lip , w_lip , h_lip = lip
+        resized_lip = cv2.resize (lip_sticker , [w_lip , h_lip])
+
+        for i in range (w_lip) :
+            for j in range (h_lip) :
+                if resized_lip[i][j][0] == resized_lip[i][j][1] == resized_lip[i][j][2] == 0 :
+                    resized_lip[i][j] = image [y_lip + i , x_lip + j]
+
+        image [y_lip : y_lip + h_lip , x_lip : x_lip + w_lip] = resized_lip
+    
+    for face in faces :
+        x_face , y_face , w_face , h_face = face
+
+        for eye in eyes :
+            x_eye , y_eye , w_eye , h_eye = eye
+            resized_glasses = cv2.resize (glasses_sticker , [w_face , h_eye + 20])
+
+            for row in range (w_eye + 20) :
+                for col in range (h_face) :
+                    if resized_glasses[row][col][0] == resized_glasses[row][col][1] == resized_glasses[row][col][2] == 0 :
+                        resized_glasses[row][col] = image [y_eye + row , x_face + col]
+
+            image [y_eye : y_eye + h_eye + 20 , x_face : x_face + w_face] = resized_glasses
+    return image
 
 
 def chess_board_filter(image):
@@ -36,10 +60,10 @@ def chess_board_filter(image):
     for face in faces:
         x, y, w, h = face
         image_face = image[y:y+w, x:x+h]
-        image_face_small = cv2.resize(image_face, [20, 20])
-        image_face_big = cv2.resize(
-            image_face_small, [w, h], interpolation=cv2.INTER_NEAREST)
-        image[y:y+w, x:x+h] = image_face_big
+        resized_image_to_small = cv2.resize(image_face, [10, 10])
+        resized_image_to_big = cv2.resize(
+            resized_image_to_small, [w, h], interpolation=cv2.INTER_NEAREST)
+        image[y:y+w, x:x+h] = resized_image_to_big
 
     return image
 
