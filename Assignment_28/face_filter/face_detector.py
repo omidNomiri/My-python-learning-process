@@ -1,6 +1,5 @@
 import cv2
 
-# image = cv2.imread("Assignment_28/face_filter/face.jpeg")
 webcam = cv2.VideoCapture(0)
 
 face_detector = cv2.CascadeClassifier(
@@ -70,23 +69,6 @@ def glasses_and_lips_filter(image):
         for channel in range(3):
             face_region[:, :, channel] = (glass_alpha * glasses[:, :, channel] +
                                     sticker_inv_alpha * face_region[:, :, channel])
-    # for eye in eyes:
-    #     x, y, w, h = eye
-    #     if glasses_sticker.shape[2] == 4:
-    #         glasses_sticker = glasses_sticker[:, :, :3]
-    #     resized_glasses = cv2.resize(glasses_sticker, [w, h])
-
-        # for i in range(h):
-        #     for j in range(w):
-        #         if resized_glasses[i][j][0] == 0 and resized_glasses[i][j][1] == 0 and resized_glasses[i][j][2] == 0:
-        #             resized_glasses[i][j] = image[y+i, x+j]
-
-        # image[y: y + h, x: x + w] = resized_glasses
-
-    # for face in faces:
-    #     x, y, w, h = face
-    #     resized_glasses = cv2.resize(glasses_sticker, [w, h])
-    #     frame[x:x+w, y:y+h] = resized_glasses
     return image
 
 
