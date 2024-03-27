@@ -4,6 +4,13 @@ __pycache__/
 *$py.class
 *.db
 
+# File
+SolvePnPHeadPoseEstimation.py
+TFLiteFaceAlignment.py
+TFLiteFaceDetector.py
+TFLiteIrisLocalization.py
+/weights
+
 # C extensions
 *.so
 .vscode
