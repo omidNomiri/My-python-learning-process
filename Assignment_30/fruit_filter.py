@@ -14,12 +14,12 @@ def zoom_effect(image, landmark, fruit):
     return result
 
 
-image = cv2.imread("Assignment_30/image.png")
-fruit_image = cv2.imread("Assignment_30/fruit.png")
+image = cv2.imread("image.png")
+fruit_image = cv2.imread("fruit.png")
 
 fd = UltraLightFaceDetecion(
-    "Assignment_30/weights/RFB-320.tflite", conf_threshold=0.88)
-fa = CoordinateAlignmentModel("Assignment_30/weights/coor_2d106.tflite")
+    "weights/RFB-320.tflite", conf_threshold=0.88)
+fa = CoordinateAlignmentModel("weights/coor_2d106.tflite")
 
 color = (255, 0, 0)
 
