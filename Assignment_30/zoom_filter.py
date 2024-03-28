@@ -1,4 +1,3 @@
-import time
 import cv2
 import numpy as np
 from TFLiteFaceDetector import UltraLightFaceDetecion
@@ -95,7 +94,6 @@ fd = UltraLightFaceDetecion(
     "weights/RFB-320.tflite", conf_threshold=0.88)
 fa = CoordinateAlignmentModel("weights/coor_2d106.tflite")
 
-start_time = time.perf_counter()
 boxes, scores = fd.inference(image)
 
 for pred in fa.get_landmarks(image, boxes):
