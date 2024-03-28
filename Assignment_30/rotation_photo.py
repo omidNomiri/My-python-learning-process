@@ -71,15 +71,18 @@ def add_filter(image, lips, right_eye, left_eye):
 
     lips = cv2.flip(lips, 0)
     removed_background_lips = remove_background(lips)
-    image = overlayPNG(image, removed_background_lips, pos=(820, 265))
+    removed_background_lips = cv2.flip(removed_background_lips, 0)
+    image = overlayPNG(image, removed_background_lips, pos=(820, 280))
 
     right_eye = cv2.flip(right_eye, 0)
     removed_background_right_eye = remove_background(right_eye)
-    image = overlayPNG(image, removed_background_right_eye, pos=(750, 550))
+    removed_background_right_eye = cv2.flip(removed_background_right_eye, 0)
+    image = overlayPNG(image, removed_background_right_eye, pos=(980, 530))
 
     left_eye = cv2.flip(left_eye, 0)
     removed_background_left_eye = remove_background(left_eye)
-    image = overlayPNG(image, removed_background_left_eye, pos=(980, 540))
+    removed_background_left_eye = cv2.flip(removed_background_left_eye, 0)
+    image = overlayPNG(image, removed_background_left_eye, pos=(760, 550))
 
     result = image
     return result
