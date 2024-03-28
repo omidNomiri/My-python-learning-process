@@ -1,81 +1,55 @@
 import cv2
 import numpy as np
-from math import degrees, acos
 from TFLiteFaceDetector import UltraLightFaceDetecion
+from TFLiteFaceAlignment import CoordinateAlignmentModel
 
-def detect_and_align_face(image_path):
-    """
-    Detects a face in an image, extracts left and right eye coordinates,
-    and performs alignment based on the eye positions.
 
-    Args:
-        image_path (str): Path to the image file.
+def find_body_part(part_of_face_landmarks_index):
+    part_of_face_landmarks = []
+    for landmark in part_of_face_landmarks_index:
+        part_of_face_landmarks.append(pred[landmark])
+    part_of_face_landmarks = np.array(part_of_face_landmarks, np.int16)
+    return part_of_face_landmarks
 
-    Returns:
-        numpy.ndarray: The aligned image.
-    """
 
-    # Load the image in BGR color format (OpenCV standard)
-    image = cv2.imread(image_path)
+def align_face(image, left_eye, right_eye, lips):
+    left_eye_center = np.mean(left_eye, axis=0).astype(int)
+    right_eye_center = np.mean(right_eye, axis=0).astype(int)
+    print("Left Eye Center:", left_eye_center)
+    print("Right Eye Center:", right_eye_center)
 
-    # Load a pre-trained face detection model (e.g., Haar cascade)
-    face_detector = UltraLightFaceDetecion(
-    "Assignment_30/weights/RFB-320.tflite", conf_threshold=0.88)
+    dy = right_eye_center[1] - left_eye_center[1]
+    dx = right_eye_center[0] - left_eye_center[0]
+    angle = np.degrees(np.arctan2(dy, dx)) - 180
 
-    # Detect faces in the image
-    boxes, scores = face_detector.inference(image)
+    eyes_center = (int(right_eye_center[0]), int(right_eye_center[1]))
+    print(eyes_center)
+    rotation_matrix = cv2.getRotationMatrix2D(eyes_center, angle, scale=1)
 
-    if len(boxes) == 0:
-        print("No face detected in the image.")
-        return None
-
-    # Extract the first detected face (assuming single-face scenario)
-    print(boxes)
-    (x, y, w, h) = boxes[0]
-    face_region = image[y:y+h, x:x+w]
-
-    # Eye detection (replace with a more robust method if needed)
-    eye_cascade = cv2.CascadeClassifier('haarcascade_eye.xml')  # Load eye detection model
-    eyes = eye_cascade.detectMultiScale(face_region, scaleFactor=1.1, minNeighbors=2)
-
-    # Check if both eyes are detected
-    if len(eyes) != 2:
-        print("Could not detect both eyes. Alignment might be inaccurate.")
-        return None
-
-    # Extract left and right eye coordinates
-    left_eye = eyes[0]
-    right_eye = eyes[1]
-    left_eye_x, left_eye_y = left_eye[0], left_eye[1]
-    right_eye_x, right_eye_y = right_eye[0], right_eye[1]
-
-    # Calculate the rotation angle
-    dx = right_eye_x - left_eye_x
-    dy = right_eye_y - left_eye_y
-
-    if dy != 0:  # Avoid division by zero
-        angle = degrees(acos(dx / (np.sqrt(dx**2 + dy**2))))
-
-    else:
-        # Handle cases where eyes are on the same horizontal line (potential for improvement)
-        angle = 0
-
-    # Determine rotation direction (clockwise or counter-clockwise)
-    if left_eye_y > right_eye_y:
-        direction = -1  # Counter-clockwise rotation
-    else:
-        direction = 1  # Clockwise rotation
-
-    # Rotate the image based on the calculated angle and direction
-    center = (x + w // 2, y + h // 2)  # Center of the face region
-    image_center = tuple(np.int0(center)) # type: ignore
-    rotation_matrix = cv2.getRotationMatrix2D(image_center, direction * angle, 1.0)
-    aligned_image = cv2.warpAffine(image, rotation_matrix, (image.shape[1], image.shape[0]))  # Maintain original dimensions
+    aligned_image = cv2.warpAffine(image, rotation_matrix, (image.shape[1], image.shape[0]), flags=cv2.INTER_CUBIC)
 
     return aligned_image
 
-# Example usage
-aligned_image = detect_and_align_face("Assignment_30/image_without_align.png")
 
-cv2.imshow("", aligned_image) # type: ignore
+image = cv2.imread("image_without_align.png")
+
+lips_landmarks_index = [52, 64, 63, 71, 67, 68, 61, 58, 59, 53, 56, 55]
+left_eye_landmarks_index = [89, 90, 87, 91, 93, 96, 94, 95]
+right_eye_landmarks_index = [39, 42, 40, 41, 35, 36, 33, 37]
+
+fd = UltraLightFaceDetecion(
+    "weights/RFB-320.tflite", conf_threshold=0.88)
+fa = CoordinateAlignmentModel("weights/coor_2d106.tflite")
+
+boxes, scores = fd.inference(image)
+
+for pred in fa.get_landmarks(image, boxes):
+    lips = find_body_part(lips_landmarks_index)
+    print(lips)
+    right_eye = find_body_part(right_eye_landmarks_index)
+    left_eye = find_body_part(left_eye_landmarks_index)
+
+aligned_image = align_face(image, left_eye, right_eye, lips)
+
+cv2.imshow("Aligned Image", aligned_image)
 cv2.waitKey(0)
