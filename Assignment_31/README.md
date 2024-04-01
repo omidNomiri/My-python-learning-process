@@ -16,8 +16,10 @@ in this project i made a histogram maker, noise redactor,foreground focus, edge 
 
 plot histogram
 ![plot histogram](output/plot.jpg)
+
 hist histogram
 ![hist histogram](output/hist.jpg)
+
 bar histogram
 ![bar histogram](output/bar.jpg)
 
