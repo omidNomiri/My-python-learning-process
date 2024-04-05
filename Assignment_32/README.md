@@ -15,19 +15,19 @@ in this project i made a histogram equalizer normal and clahe, reveal hidden ite
 #### 2D Convolution
 
 sharpening filter
-![sharpening filter](output\sharpening_result.png)
+![sharpening filter](output/sharpening_result.png)
 
 identity filter
-![identity filter](output\identity_result.png)
+![identity filter](output/identity_result.png)
 
 emboss filter
-![emboss filter](output\emboss_result.png)
+![emboss filter](output/emboss_result.png)
 
 edge filter
-![edge filter](output\edge_detection_result.png)
+![edge filter](output/edge_detection_result.png)
 
 black zone filter
-![black zone filter](output\black_zone_result.png)
+![black zone filter](output/black_zone_result.png)
 
 #### Item Reveal
 
@@ -57,16 +57,16 @@ image board noise redacted
 ![board](output/image_board_result.png)
 
 image circle noise redacted
-![image circle](output\image_circle_result.png)
+![image circle](output/image_circle_result.png)
 
 image man woman noise redacted
-![image man woman](output\image_man_woman_result.png)
+![image man woman](output/image_man_woman_result.png)
 
 image skeleton noise redacted
-![image skeleton](output\image_skeleton_result.png)
+![image skeleton](output/image_skeleton_result.png)
 
 image woman noise redacted
-![image woman](output\image_woman_result.png)
+![image woman](output/image_woman_result.png)
 
 ## Getting Started <a name = "getting_started"></a>
 
