@@ -65,23 +65,23 @@ After you install requirements library you can choice between the projects and r
 ### 2d_convolution
 
 ``` terminal
-python 2d_convolution.ipynb
+jupyter nbconvert --to script 2d_convolution.ipynb
 ```
 
 ### average reveal
 
 ``` terminal
-python average_reveal.ipynb
+jupyter nbconvert --to script average_reveal.ipynb
 ```
 
 ### histogram equalizer
 
 ``` terminal
-python histogram_equalizer.ipynb
+jupyter nbconvert --to script histogram_equalizer.ipynb
 ```
 
 ### median noise redactor
 
 ``` terminal
-python median_noise_redactor.ipynb
+jupyter nbconvert --to script median_noise_redactor.ipynb
 ```
