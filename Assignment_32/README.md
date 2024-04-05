@@ -14,20 +14,12 @@ in this project i made a histogram equalizer normal and clahe, reveal hidden ite
 
 #### 2D Convolution
 
-sharpening filter
-![sharpening filter](output/sharpening_result.png)
-
-identity filter
-![identity filter](output/identity_result.png)
-
-emboss filter
-![emboss filter](output/emboss_result.png)
-
-edge filter
-![edge filter](output/edge_detection_result.png)
-
-black zone filter
-![black zone filter](output/black_zone_result.png)
+| filter | input image | output image |
+|--------------|-----------|-----------|
+| sharpening filter | ![input image](input/spider.png) | ![sharpening filter](output/sharpening_result.png) |
+| emboss filter | ![input image](input/spider.png) | ![emboss filter](output/emboss_result.png) |
+| edge filter | ![input image](input/spider.png) | ![edge filter](output/edge_detection_result.png) |
+| black zone filter | ![input image](input/spider.png) | ![black zone filter](output/black_zone_result.png) |
 
 #### Item Reveal
 
@@ -39,34 +31,22 @@ average item reveal filter 5x5
 
 #### Histogram Equalizer
 
-normal landing place VS equalized landing place
-![landing place](output/landing_place_equalizer_result.png)
-
-normal land VS equalized land
-![land](output/land_equalizer_result.png)
-
-normal figure VS clahe equalized figure
-![figure](output/figure_equalizer_result.png)
+| equalizer | input image VS output image |
+|--------------|-----------|
+| normal equalizer | ![landing place](output/landing_place_equalizer_result.png) |
+| normal equalizer | ![land](output/land_equalizer_result.png) |
+| clahe equalizer | ![figure](output/figure_equalizer_result.png) |
 
 #### Median Noise Redactor
 
-image A noise redacted
-![a](output/a_result.png)
-
-image board noise redacted
-![board](output/image_board_result.png)
-
-image circle noise redacted
-![image circle](output/image_circle_result.png)
-
-image man woman noise redacted
-![image man woman](output/image_man_woman_result.png)
-
-image skeleton noise redacted
-![image skeleton](output/image_skeleton_result.png)
-
-image woman noise redacted
-![image woman](output/image_woman_result.png)
+|image name | input image | output image |
+|--------------|-----------|-----------|
+| image A | ![a](input/a.png) | ![a](output/a_result.png) |
+| image board | ![board](input/noisy_board.png) | ![board](output/image_board_result.png) |
+| image circle | ![image circle](input/noisy_image.png) | ![image circle](output/image_circle_result.png) |
+| image man woman | ![image man woman](input/man_woman.png) | ![image man woman](output/image_man_woman_result.png) |
+| image skeleton | ![image skeleton](input/noisy_skeleton.png) | ![image skeleton](output/image_skeleton_result.png) |
+| image woman | ![image woman](input/woman.png) | ![image woman](output/image_woman_result.png) |
 
 ## Getting Started <a name = "getting_started"></a>
 
