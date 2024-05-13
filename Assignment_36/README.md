@@ -61,10 +61,10 @@ pip install -r requirements.txt
 
 After you install requirements library you can choice between the projects and run it.
 
-### decoder/encoder app
+### balloon detector
 
 ``` terminal
-python enc_and_dec_image/app.py
+jupyter nbconvert --to script balloon_detection.ipynb
 ```
 
 ### color detection
@@ -73,22 +73,32 @@ python enc_and_dec_image/app.py
 jupyter nbconvert --to script color_detection.ipynb
 ```
 
-### pillow(PIL) exercise
+### mater_welon
 
 ``` terminal
-jupyter nbconvert --to script PIL.ipynb
+jupyter nbconvert --to script mater_welon.ipynb
 ```
 
-### pos landmark detection
-
-> **use python 3.10**
+### skin detector
 
 ``` terminal
-jupyter nbconvert --to script pos_landmark.ipynb
+jupyter nbconvert --to script skin_detector.ipynb
 ```
 
-### remove background
+### spiderman
 
 ``` terminal
-jupyter nbconvert --to script remove_background.ipynb
+jupyter nbconvert --to script spiderman.ipynb
+```
+
+### superman
+
+``` terminal
+jupyter nbconvert --to script superman.ipynb
+```
+
+### T-shirt
+
+``` terminal
+jupyter nbconvert --to script T_shirt.ipynb
 ```
