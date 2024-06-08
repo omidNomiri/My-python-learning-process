@@ -1,15 +1,50 @@
-weight = float(input("Please enter your weight(kg): "))
-height = float(input("Please enter your height(m): "))
+def calculate_bmi(weight: float, height: float) -> float:
+    """
+    Calculate BMI based on weight and height.
+    
+    Parameters:
+    weight (float): Weight in kilograms.
+    height (float): Height in meters.
+    
+    Returns:
+    float: BMI value.
+    """
+    return weight / (height ** 2)
 
-BMI = weight / (height ** 2)
+def get_bmi_category(bmi: float) -> str:
+    """
+    Determine BMI category based on its value.
+    
+    Parameters:
+    bmi (float): BMI value.
+    
+    Returns:
+    str: Corresponding BMI category.
+    """
+    if bmi < 18.5:
+        return "Underweight"
+    elif 18.5 <= bmi <= 24.9:
+        return "Normal weight"
+    elif 25 <= bmi <= 29.9:
+        return "Overweight"
+    elif 30 <= bmi <= 34.9:
+        return "Obesity"
+    elif 35 <= bmi <= 39.9:
+        return "Extreme obesity"
+    else:
+        return "Morbid obesity"
 
-if BMI < 18.5:
-    print(f"your BMI is {BMI} and you'r a Under weight")
-if 24.9 > BMI > 18.5:
-    print(f"your BMI is {BMI} and you'r a Normal weight")
-if 29.9 > BMI > 25:
-    print(f"your BMI is {BMI} and you'r a Over weight")
-if 34.9 > BMI > 30:
-    print(f"your BMI is {BMI} and you'r a Obesity")
-if 39.9 > BMI > 35:
-    print(f"your BMI is {BMI} and you'r a Extreme obesity ")
+def main():
+    """
+    Main function to get user inputs and display the result.
+    """
+    weight = float(input("Please enter your weight (kg): "))
+    height = float(input("Please enter your height (m): "))
+
+    bmi = calculate_bmi(weight, height)
+    category = get_bmi_category(bmi)
+    
+    print(f"Your BMI is {bmi:.2f} and you are {category}.")
+
+if __name__ == "__main__":
+    main()
