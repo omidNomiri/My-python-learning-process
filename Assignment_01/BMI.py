@@ -1,23 +1,24 @@
 def calculate_bmi(weight: float, height: float) -> float:
     """
     Calculate BMI based on weight and height.
-    
+
     Parameters:
     weight (float): Weight in kilograms.
-    height (float): Height in meters.
-    
+    height (float): Height in centimeters.
+
     Returns:
     float: BMI value.
     """
-    return weight / (height ** 2)
+    return weight / ((height / 100) ** 2)
+
 
 def get_bmi_category(bmi: float) -> str:
     """
     Determine BMI category based on its value.
-    
+
     Parameters:
     bmi (float): BMI value.
-    
+
     Returns:
     str: Corresponding BMI category.
     """
@@ -34,17 +35,12 @@ def get_bmi_category(bmi: float) -> str:
     else:
         return "Morbid obesity"
 
-def main():
-    """
-    Main function to get user inputs and display the result.
-    """
+
+if __name__ == "__main__":
     weight = float(input("Please enter your weight (kg): "))
-    height = float(input("Please enter your height (m): "))
+    height = float(input("Please enter your height (cm): "))
 
     bmi = calculate_bmi(weight, height)
     category = get_bmi_category(bmi)
-    
-    print(f"Your BMI is {bmi:.2f} and you are {category}.")
 
-if __name__ == "__main__":
-    main()
+    print(f"Your BMI is {bmi} and you are {category}.")
