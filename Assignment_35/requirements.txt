@@ -1,4 +1,0 @@
-matplotlib
-opencv-python
-mediapipe
-notebook
